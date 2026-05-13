@@ -1,2 +1,0 @@
-# mustafakanchwala.github.io
-Webpage
