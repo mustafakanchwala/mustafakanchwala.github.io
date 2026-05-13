@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mustafa Kanchwala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;--bg:#fff;--bg2:#f8f8f8;--border:#e8e8e8;--text:#1a1a1a;--text2:#555;--text3:#888;--accent:#1a56db;--accent2:#e8f0fe;--tag:#f0f0f0;--tagtxt:#444;--max:760px;--r:4px;}
+[data-theme=dark]{--bg:#13171f;--bg2:#1c2130;--border:#2a3045;--text:#e8eaf0;--text2:#a0a8bc;--text3:#606880;--accent:#5b8dee;--accent2:#1a2545;--tag:#242938;--tagtxt:#a0a8bc;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:var(--font);font-size:.9375rem;line-height:1.75;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;}
+a{color:var(--accent);}a:hover{text-decoration:underline;}
+ul{list-style:none;}img{display:block;max-width:100%;}
+
+/* ── TOP NAV ── */
+.topnav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);}
+.topnav-inner{max-width:calc(var(--max) + 80px);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2rem;height:52px;}
+.nav-logo{font-size:.82rem;font-weight:600;color:var(--text);white-space:nowrap;text-decoration:none;flex-shrink:0;}
+.nav-logo:hover{text-decoration:none;}
+.nav-links{display:flex;gap:.25rem;flex:1;}
+.nav-btn{background:none;border:none;cursor:pointer;font-family:var(--font);font-size:.82rem;color:var(--text2);padding:.3rem .6rem;border-radius:var(--r);transition:color .12s,background .12s;}
+.nav-btn:hover{color:var(--text);background:var(--bg2);}
+.nav-btn.active{color:var(--accent);font-weight:500;background:var(--accent2);}
+.nav-right{display:flex;gap:.5rem;align-items:center;margin-left:auto;}
+.ico{width:28px;height:28px;border-radius:var(--r);border:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--text3);transition:color .12s,border-color .12s;flex-shrink:0;text-decoration:none;}
+.ico:hover{color:var(--accent);border-color:var(--accent);text-decoration:none;}
+.theme-btn{background:none;border:none;cursor:pointer;font-size:.68rem;font-family:var(--mono);color:var(--text3);padding:.2rem .45rem;border-radius:var(--r);transition:color .12s;white-space:nowrap;}
+.theme-btn:hover{color:var(--text);}
+
+/* ── PAGE / PANELS ── */
+.page{max-width:calc(var(--max) + 80px);margin:0 auto;padding:3rem 2rem 6rem;}
+.panel{display:none;}.panel.active{display:block;}
+
+/* ── ABOUT HERO ── */
+.hero{display:grid;grid-template-columns:190px 1fr;gap:0 2.75rem;align-items:start;margin-bottom:3.5rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
+.hero-left{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.hero-photo{width:170px;height:170px;border-radius:50%;overflow:hidden;border:3px solid var(--border);background:var(--bg2);box-shadow:0 2px 20px rgba(0,0,0,.09);}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-social{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;}
+.hero-social .ico{width:30px;height:30px;}
+.hero-right h1{font-size:1.85rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;color:var(--text);margin-bottom:.2rem;}
+.hero-right .role{font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.04em;margin-bottom:1.15rem;}
+.hero-right p{font-size:.9rem;line-height:1.82;color:var(--text2);margin-bottom:.7rem;}
+.hero-right p:last-of-type{margin-bottom:0;}
+.chips{display:flex;flex-wrap:wrap;gap:.36rem;margin-top:1.1rem;}
+.chip{font-family:var(--mono);font-size:.63rem;background:var(--tag);color:var(--tagtxt);padding:.2rem .52rem;border-radius:2px;letter-spacing:.04em;}
+.chip.hi{background:var(--accent2);color:var(--accent);}
+
+/* ── SECTION ── */
+.sec{max-width:var(--max);margin-bottom:3.5rem;}
+.sec-h{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;color:var(--text);margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;}
+.sec-h::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── CARDS ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.05rem 1.15rem;position:relative;overflow:hidden;transition:border-color .15s,box-shadow .15s;}
+.card::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity .15s;}
+.card:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent2);}
+.card:hover::before{opacity:1;}
+.card-lbl{font-family:var(--mono);font-size:.59rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.28rem;}
+.card h3{font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:.3rem;line-height:1.35;}
+.card-sub{font-family:var(--mono);font-size:.6rem;color:var(--accent);margin-bottom:.45rem;}
+.card p{font-size:.79rem;color:var(--text2);line-height:1.65;}
+.ctags{display:flex;flex-wrap:wrap;gap:.22rem;margin-top:.6rem;}
+.ctag{font-family:var(--mono);font-size:.56rem;background:var(--tag);color:var(--tagtxt);padding:.12rem .35rem;border-radius:2px;}
+.sec-note{font-size:.75rem;color:var(--text3);margin-top:.85rem;font-style:italic;}
+
+/* ── RESEARCH HIGHLIGHTS ── */
+.rh-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.rh{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.05rem 1.15rem;position:relative;overflow:hidden;transition:border-color .15s,box-shadow .15s;}
+.rh::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity .15s;}
+.rh:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent2);}
+.rh:hover::before{opacity:1;}
+.rh-lbl{font-family:var(--mono);font-size:.59rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.3rem;}
+.rh h4{font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:.35rem;line-height:1.35;}
+.rh p{font-size:.78rem;color:var(--text2);line-height:1.62;}
+.rhtags{display:flex;flex-wrap:wrap;gap:.22rem;margin-top:.55rem;}
+.rhtag{font-family:var(--mono);font-size:.56rem;background:var(--tag);color:var(--tagtxt);padding:.12rem .35rem;border-radius:2px;}
+
+/* ── PUBLICATIONS ── */
+.pub-grp{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;}
+.pubs{display:flex;flex-direction:column;gap:.65rem;}
+.pub{display:grid;grid-template-columns:2.1rem 1fr;gap:0 .7rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:.85rem 1rem;transition:border-color .15s;}
+.pub:hover{border-color:var(--accent);}
+.pub-ref{font-family:var(--mono);font-size:.61rem;font-weight:500;color:var(--accent);padding-top:.07rem;}
+.pbadge{display:inline-block;font-family:var(--mono);font-size:.57rem;letter-spacing:.05em;text-transform:uppercase;padding:.09rem .38rem;border-radius:2px;margin-bottom:.22rem;background:var(--accent);color:#fff;}
+.pbadge.vlsi{background:#1a7a4a;}.pbadge.biocas{background:#6b3a7d;}.pbadge.jnl{background:#c47a1a;}
+.pub-title{font-size:.82rem;color:var(--text);line-height:1.5;}
+.pub-authors{font-size:.72rem;color:var(--text3);margin-top:.14rem;font-style:italic;line-height:1.5;}
+.pub-authors strong{color:var(--text2);font-style:normal;font-weight:500;}
+.view-all{display:inline-flex;align-items:center;gap:.35rem;font-size:.82rem;color:var(--accent);font-weight:500;margin-top:.5rem;background:none;border:none;cursor:pointer;font-family:var(--font);padding:0;}
+.view-all:hover{text-decoration:underline;}
+.view-all::after{content:'→';font-size:.75rem;}
+
+/* ── EXPERIENCE / TIMELINE ── */
+.exp-list,.edu-list,.teach-list,.award-list{display:flex;flex-direction:column;}
+.exp-row,.edu-row,.teach-row,.award-row{display:grid;grid-template-columns:145px 1fr;gap:0 1.1rem;padding:1.1rem 0;border-bottom:1px solid var(--border);}
+.exp-row:first-child,.edu-row:first-child,.teach-row:first-child,.award-row:first-child{border-top:1px solid var(--border);}
+.meta-dates{font-family:var(--mono);font-size:.61rem;color:var(--text3);line-height:1.4;}
+.meta-loc{font-size:.67rem;color:var(--text3);margin-top:.12rem;}
+.body h3{font-size:.9rem;font-weight:600;color:var(--text);line-height:1.3;}
+.body .org{font-family:var(--mono);font-size:.63rem;color:var(--accent);margin:.1rem 0 .52rem;letter-spacing:.03em;}
+.body ul{display:flex;flex-direction:column;gap:.25rem;}
+.body li{font-size:.8rem;color:var(--text2);line-height:1.65;padding-left:1rem;position:relative;}
+.body li::before{content:'→';position:absolute;left:0;color:var(--text3);font-size:.68rem;top:.25rem;}
+.edu-yr{font-family:var(--mono);font-size:.61rem;color:var(--text3);padding-top:.05rem;}
+.edu-body h3{font-size:.87rem;font-weight:600;color:var(--text);}
+.edu-inst{font-size:.76rem;color:var(--text2);margin-top:.08rem;}
+.edu-note{font-family:var(--mono);font-size:.61rem;color:var(--accent);margin-top:.12rem;}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.sk h4{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.46rem;padding-bottom:.28rem;border-bottom:1px solid var(--border);}
+.sk ul{display:flex;flex-direction:column;gap:.18rem;}
+.sk li{font-size:.79rem;color:var(--text2);padding-left:.7rem;position:relative;}
+.sk li::before{content:'·';position:absolute;left:0;color:var(--text3);}
+.teach-yrs{font-family:var(--mono);font-size:.61rem;color:var(--text3);}
+.teach-course{color:var(--text);font-weight:500;font-size:.8rem;}
+.teach-role{font-size:.72rem;color:var(--text2);}
+.award-yr{font-family:var(--mono);font-size:.61rem;color:var(--text3);padding-top:.05rem;}
+.award-name{font-size:.8rem;color:var(--text);font-weight:500;}
+.award-detail{font-size:.72rem;color:var(--text2);margin-top:.05rem;}
+.svc-list{display:flex;flex-direction:column;gap:.5rem;}
+.svc{font-size:.8rem;color:var(--text2);padding-left:1rem;position:relative;line-height:1.65;}
+.svc::before{content:'→';position:absolute;left:0;color:var(--text3);font-size:.68rem;top:.22rem;}
+
+/* ── FOOTER ── */
+.footer{max-width:var(--max);margin-top:4rem;padding-top:1.1rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.63rem;color:var(--text3);display:flex;justify-content:space-between;}
+
+/* ── NEWS ── */
+.news-list{display:flex;flex-direction:column;gap:0;}
+.news-item{display:grid;grid-template-columns:90px 1fr;gap:0 1.1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:baseline;}
+.news-item:first-child{border-top:1px solid var(--border);}
+.news-date{font-family:var(--mono);font-size:.61rem;color:var(--text3);white-space:nowrap;padding-top:.05rem;}
+.news-body{font-size:.88rem;color:var(--text2);line-height:1.7;}
+.news-body strong{color:var(--text);font-weight:600;}
+.news-body a{color:var(--accent);}
+.news-tag{display:inline-block;font-family:var(--mono);font-size:.57rem;letter-spacing:.05em;text-transform:uppercase;padding:.1rem .38rem;border-radius:2px;background:var(--accent2);color:var(--accent);margin-right:.4rem;vertical-align:middle;position:relative;top:-.05rem;}
+.news-more{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;color:var(--text3);font-family:var(--mono);margin-top:.75rem;cursor:pointer;background:none;border:none;padding:0;transition:color .12s;}
+.news-more:hover{color:var(--accent);}
+.news-hidden{display:none;}
+.news-hidden.open{display:flex;flex-direction:column;gap:0;}
+.fade{opacity:0;transform:translateY(10px);transition:opacity .42s ease,transform .42s ease;}
+.fade.in{opacity:1;transform:none;}
+
+/* ── MOBILE ── */
+@media(max-width:680px){
+  .topnav-inner{padding:0 1rem;gap:1rem;}
+  .nav-links{gap:.1rem;overflow-x:auto;}
+  .nav-btn{font-size:.72rem;padding:.25rem .45rem;white-space:nowrap;}
+  .theme-btn{display:none;}
+  .page{padding:2rem 1rem 5rem;}
+  .hero{grid-template-columns:1fr;gap:1.5rem;}
+  .hero-left{flex-direction:row;align-items:center;gap:1.25rem;}
+  .hero-photo{width:100px;height:100px;flex-shrink:0;}
+  .grid2,.rh-grid,.skills-grid{grid-template-columns:1fr;}
+  .exp-row,.edu-row,.teach-row,.award-row{grid-template-columns:1fr;gap:.1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="nav-logo" href="#" onclick="show('about');return false;" style="font-family:'Inter','Helvetica Neue',system-ui,sans-serif;font-weight:600;font-size:0.95rem;letter-spacing:2px;color:var(--text);">MK</a>
+    <div class="nav-links">
+      <button class="nav-btn active" id="nb-about"        onclick="show('about',this)">About</button>
+      <button class="nav-btn"        id="nb-projects"     onclick="show('projects',this)">Projects</button>
+      <button class="nav-btn"        id="nb-publications" onclick="show('publications',this)">Publications</button>
+      <button class="nav-btn"        id="nb-experience"   onclick="show('experience',this)">Experience</button>
+      <button class="nav-btn"        id="nb-other"        onclick="show('other',this)">Teaching &amp; More</button>
+    </div>
+    <div class="nav-right">
+      <a href="#" id="e1" class="ico" title="Email"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+      <a href="https://www.linkedin.com/in/mustafakanchwala12/" target="_blank" class="ico" title="LinkedIn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://scholar.google.ca/citations?user=r3QNKNIAAAAJ&hl=en" target="_blank" class="ico" title="Google Scholar"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" opacity=".7"/></svg></a>
+      <a href="https://www.eecg.utoronto.ca/~roman/professional/home/home.html" target="_blank" class="ico" title="ISMlab"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+      <button class="theme-btn" onclick="toggleTheme()">
+        <svg id="th-ic" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:3px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><span id="th-lbl">dark</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- ════ ABOUT ════════════════════════════════════════════════ -->
+<div class="panel active" id="panel-about">
+
+  <div class="hero fade">
+    <div class="hero-left">
+      <div class="hero-photo">
+        <img id="hero-img" src="data:image/jpeg;base64,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" alt="Mustafa Kanchwala"/>
+      </div>
+      <div class="hero-social">
+        <a href="#" id="e2" class="ico" title="Email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+        <a href="https://www.linkedin.com/in/mustafakanchwala12/" target="_blank" class="ico" title="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://scholar.google.ca/citations?user=r3QNKNIAAAAJ&hl=en" target="_blank" class="ico" title="Google Scholar"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" opacity=".7"/></svg></a>
+        <a href="https://www.eecg.utoronto.ca/~roman/professional/home/home.html" target="_blank" class="ico" title="ISMlab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <h1>Mustafa Kanchwala</h1>
+      <p class="role">Digital ASIC Designer &nbsp;·&nbsp; PhD Candidate, University of Toronto</p>
+      <p>Hi! I'm a Digital ASIC Designer and PhD candidate in the <a href="https://www.eecg.utoronto.ca/~roman/professional/home/home.html" target="_blank">Intelligent Sensory Microsystems Lab</a> at the University of Toronto, advised by <a href="https://www.eecg.utoronto.ca/~roman/" target="_blank">Prof. Roman Genov</a>.</p>
+      <p>My research focuses on low-power digital ASIC design for AI/ML accelerators, DSP pipelines, and adaptive controllers targeting event-driven and edge-inference systems for implantable neural interfaces. I have end-to-end ownership across <strong>four taped-out chips in 65 nm CMOS</strong> — from microarchitecture and RTL through synthesis, timing closure, full-chip integration, and post-silicon validation.</p>
+      <p>Results published at <strong>IEEE ISSCC</strong>, <strong>VLSI Technology and Circuits</strong>, IEEE TBCAS, Journal of NeuroEngineering and Rehabilitation, and IEEE BioCAS. Recipient of the <strong>NSERC PGS-D Scholarship</strong> for 2023–2025. You can find more information in my <a href="cv.pdf" target="_blank">CV</a>.</p>
+      <div class="chips">
+        <span class="chip hi">4 Tape-Outs · 65 nm CMOS</span>
+        <span class="chip">AI/ML Accelerators</span>
+        <span class="chip">DSP / Filtering</span>
+        <span class="chip">SoC Integration</span>
+        <span class="chip">IEEE ISSCC · VLSI</span>
+        <span class="chip">NSERC PGS-D</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- News -->
+  <div class="sec fade">
+    <h2 class="sec-h">News</h2>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">Jun 2026</div>
+        <div class="news-body">
+          <span class="news-tag">Conference</span>
+          <strong>Paper accepted at IEEE VLSI 2026.</strong> I will be presenting "A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants" at the <a href="https://www.vlsisymposium.org/" target="_blank">IEEE Symposium on VLSI Technology and Circuits</a> in Honolulu, Hawaii.
+        </div>
+      </div>
+    </div>
+    <button class="news-more" id="news-more-btn" onclick="toggleMoreNews()">more ↓</button>
+    <div class="news-hidden" id="news-hidden-items">
+      <div class="news-item">
+        <div class="news-date">Nov 2025</div>
+        <div class="news-body">
+          <span class="news-tag">Demo</span>
+          <strong>Demo presented at CMC TEXPO 2025.</strong> Presented a live demo of "A Reconfigurable Modular Microelectrode Array Platform for Fast Prototyping of Implantable Closed-Loop Neuromodulation Medical Devices" at the <a href="https://fabricinnovation.ca/texpo-2025/" target="_blank">Canadian Microsystems Corporation TEXPO 2025</a>.
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Oct 2025</div>
+        <div class="news-body">
+          <span class="news-tag">Conference</span>
+          <strong>Paper accepted at IEEE BioCAS 2025.</strong> Presenting "A Reconfigurable Modular Microelectrode Array Platform for Fast Prototyping of Implantable Closed-Loop Neuromodulation Medical Devices" at the <a href="https://2025.ieee-biocas.org/" target="_blank">IEEE Biomedical Circuits and Systems Conference</a> in Abu Dhabi, UAE.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research Highlights -->
+  <div class="sec fade">
+    <h2 class="sec-h">Research Highlights</h2>
+    <div class="rh-grid">
+      <div class="rh"><div class="rh-lbl">Tape-Out 02 · IEEE ISSCC 2025</div><h4>10 nW/channel Event-Driven Neural Interface</h4><p>ML accelerator, digital filter, and mode-switching controller for an inverter-based AFE enabling best-in-class 10 nW/channel event-driven operation in 65 nm CMOS.</p><div class="rhtags"><span class="rhtag">ML Accelerator</span><span class="rhtag">10 nW/ch</span><span class="rhtag">ISSCC 2025</span></div></div>
+      <div class="rh"><div class="rh-lbl">Tape-Out 03 · IEEE VLSI 2026</div><h4>Split-Inference BCI SoC — Lowest Reported Power</h4><p>Led full-chip integration of a split-inference neural processing SoC achieving the lowest reported power among existing spike BCI systems. Accepted at IEEE VLSI 2026.</p><div class="rhtags"><span class="rhtag">Split-Inference</span><span class="rhtag">BCI</span><span class="rhtag">VLSI 2026</span></div></div>
+      <div class="rh"><div class="rh-lbl">Tape-Out 04 · Edge AI</div><h4>CNN / Transformer Accelerator SoC</h4><p>Configurable CNN/Transformer processing element with adaptive AFE control, DSP pipeline, and packetizer — end-to-end from custom pad-frame through wireless TX.</p><div class="rhtags"><span class="rhtag">CNN/Transformer</span><span class="rhtag">DSP</span><span class="rhtag">Wireless TX</span></div></div>
+      <div class="rh"><div class="rh-lbl">IEEE TBCAS 2023 · Journal</div><h4>Fascicle-Selective Peripheral Nerve Interface IC</h4><p>Contributed to a bidirectional wireless PNI IC with 173 dB FOM SAR ADCs and 1.38 pJ/b current-ripple radio, published in IEEE TBCAS and presented at IEEE ISSCC 2023.</p><div class="rhtags"><span class="rhtag">PNI IC</span><span class="rhtag">ISSCC 2023</span><span class="rhtag">TBCAS</span></div></div>
+    </div>
+  </div>
+
+  <!-- Selected Publications -->
+  <div class="sec fade">
+    <h2 class="sec-h">Selected Publications</h2>
+    <div class="pubs">
+      <div class="pub"><div class="pub-ref">[C1]</div><div><span class="pbadge vlsi">IEEE VLSI 2026</span><div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, 2026 (Accepted)</div></div></div>
+      <div class="pub"><div class="pub-ref">[C3]</div><div><span class="pbadge">IEEE ISSCC 2025</span><div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div><div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, 2025</div></div></div>
+      <div class="pub"><div class="pub-ref">[J1]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong> et al. — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div></div></div>
+      <div class="pub"><div class="pub-ref">[C5]</div><div><span class="pbadge">IEEE ISSCC 2023</span><div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div><div class="pub-authors">J. Xu, J. S. Filho, …, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, 2023</div></div></div>
+    </div>
+    <button class="view-all" onclick="show('publications',document.getElementById('nb-publications'))">View all 12 publications</button>
+  </div>
+
+  <div class="footer">
+    <span>Mustafa Kanchwala · University of Toronto</span>
+    <span>May 2026</span>
+  </div>
+  <div style="max-width:var(--max);margin:.75rem auto 0;padding-bottom:2rem;font-family:var(--mono);font-size:.52rem;color:var(--text3);display:flex;justify-content:center;gap:.35rem;opacity:0.8;">
+    <span>Design inspiration from <a href="https://themes.gohugo.io/themes/jughead/" target="_blank" style="color:var(--text3);text-decoration:underline;text-underline-offset:2px;">Hugo/Jughead</a></span>
+    <span>&amp;</span>
+    <span><a href="https://catherinesyeh.github.io/" target="_blank" style="color:var(--text3);text-decoration:underline;text-underline-offset:2px;">Catherine Yeh</a></span>
+    <span>·</span>
+    <span>Built with <a href="https://claude.ai" target="_blank" style="color:var(--text3);text-decoration:underline;text-underline-offset:2px;">Claude</a></span>
+  </div>
+</div><!-- /about -->
+
+<!-- ════ PROJECTS ════════════════════════════════════════════ -->
+<div class="panel" id="panel-projects">
+  <div class="sec fade">
+    <h2 class="sec-h">Silicon Tape-Outs</h2>
+    <div class="grid2">
+      <div class="card"><div class="card-lbl">Tape-Out 01</div><h3>Spatially Zooming ADC Control Logic</h3><div class="card-sub">65 nm CMOS · Neural Sensing SoC</div><p>Low-power digital control logic for adaptive dynamic-range operation of an energy-efficient zooming ADC front-end, with three incremental resolution modes for a multi-channel neural sensing SoC.</p><div class="ctags"><span class="ctag">RTL</span><span class="ctag">Synthesis</span><span class="ctag">ADC Interface</span><span class="ctag">Post-Silicon</span></div></div>
+      <div class="card"><div class="card-lbl">Tape-Out 02</div><h3>Event-Driven Neural Interface SoC</h3><div class="card-sub">65 nm CMOS · IEEE ISSCC 2025</div><p>Mode-switching controller for inverter-based AFE, band-pass digital filter, and ML accelerator. Best-in-class <strong>10 nW/channel</strong> event-driven operation. Published at IEEE ISSCC 2025.</p><div class="ctags"><span class="ctag">ML Accelerator</span><span class="ctag">10 nW/ch</span><span class="ctag">ISSCC 2025</span></div></div>
+      <div class="card"><div class="card-lbl">Tape-Out 03</div><h3>Split-Inference Edge-AI SoC</h3><div class="card-sub">65 nm CMOS · IEEE VLSI 2026</div><p>Led digital system design and full-chip integration for a split-inference neural processing SoC achieving the lowest reported power among existing spike BCI systems. Accepted at IEEE VLSI 2026.</p><div class="ctags"><span class="ctag">Split-Inference</span><span class="ctag">BCI</span><span class="ctag">Full-Chip</span><span class="ctag">VLSI 2026</span></div></div>
+      <div class="card"><div class="card-lbl">Tape-Out 04</div><h3>CNN / Transformer Accelerator SoC</h3><div class="card-sub">65 nm CMOS · Edge Inference</div><p>Configurable CNN/Transformer processing element, adaptive AFE mode-switching controller, DSP filtering pipeline, and packetizer. Custom pad-frame and end-to-end data-path from ADC through wireless TX.</p><div class="ctags"><span class="ctag">CNN/Transformer</span><span class="ctag">DSP</span><span class="ctag">Pad-Frame</span><span class="ctag">Wireless TX</span></div></div>
+    </div>
+  </div>
+  <div class="sec fade">
+    <h2 class="sec-h">FPGA Projects</h2>
+    <div class="grid2">
+      <div class="card"><div class="card-lbl">FPGA · Zynq SoC</div><h3>Neural Signal Processing Pipeline</h3><div class="card-sub">Zynq 7020/7030 · Vivado / Vitis</div><p>Real-time neural signal acquisition, filtering, and feature extraction on a Zynq SoC via AXI interconnects. Rapid prototyping platform for verifying ASIC subsystems prior to tape-out.</p><div class="ctags"><span class="ctag">AXI</span><span class="ctag">HLS</span><span class="ctag">PS/PL</span><span class="ctag">Vivado</span></div></div>
+      <div class="card"><div class="card-lbl">FPGA · Genesys2</div><h3>RTL Verification & Bring-Up Platform</h3><div class="card-sub">Genesys2 · SystemVerilog / Tcl</div><p>FPGA-based verification environments for pre-silicon RTL validation of ML accelerator and DSP blocks, including stimulus generation, functional coverage, and interface emulation for ASIC bring-up.</p><div class="ctags"><span class="ctag">RTL Verification</span><span class="ctag">SystemVerilog</span><span class="ctag">Bring-Up</span></div></div>
+      <div class="card"><div class="card-lbl">FPGA · PYNQ-Z1</div><h3>Edge ML Inference Prototype</h3><div class="card-sub">PYNQ-Z1 / Arty-Z7 · Python + RTL</div><p>Configurable edge-inference pipelines for neural signal classifiers using Python-controlled FPGA fabric, enabling rapid ML model iteration ahead of ASIC implementation.</p><div class="ctags"><span class="ctag">PYNQ</span><span class="ctag">ML Inference</span><span class="ctag">Python</span><span class="ctag">Vitis AI</span></div></div>
+      <div class="card"><div class="card-lbl">FPGA · Zynq / Custom</div><h3>Wireless Data-Path & Packetizer</h3><div class="card-sub">Zynq SoC · APB / SPI / UART</div><p>Configurable packetization and wireless data-path module validated on FPGA, subsequently ported to synthesizable RTL for the CNN/Transformer SoC tape-out.</p><div class="ctags"><span class="ctag">Packetizer</span><span class="ctag">APB</span><span class="ctag">Wireless TX</span><span class="ctag">RTL Port</span></div></div>
+    </div>
+    <p class="sec-note">FPGA platforms used extensively for pre-silicon verification, bring-up support, and rapid prototyping across all four tape-out projects.</p>
+  </div>
+</div>
+
+<!-- ════ PUBLICATIONS ════════════════════════════════════════ -->
+<div class="panel" id="panel-publications">
+  <div class="sec fade">
+    <h2 class="sec-h">Publications</h2>
+    <div class="pub-grp">Journal Articles</div>
+    <div class="pubs">
+      <div class="pub"><div class="pub-ref">[J1]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong>, J. S. Filho, T. Valiante, R. Genov — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div></div></div>
+      <div class="pub"><div class="pub-ref">[J2]</div><div><span class="pbadge jnl">JNER 2026</span><div class="pub-title">"Temporal Interference Stimulation of Peripheral Nerves Induces Functionally Diverse Limb Movements Revealed by Automated Pose Estimation and Unsupervised Behavioral Analysis"</div><div class="pub-authors">J. P. Olorocisimo, S. Nag, H. Zhang, S. Yang, M. Prytula, S. Liu, <strong>M. Kanchwala</strong>, Y. Sun, J. Zariffa, R. Genov — J. NeuroEngineering Rehabil., Vol. 23, Art. 29, 2026</div></div></div>
+      <div class="pub"><div class="pub-ref">[J3]</div><div><span class="pbadge jnl">IEEE TBCAS 2023</span><div class="pub-title">"Fascicle-Selective Ultrasound-Powered Bidirectional Wireless Peripheral Nerve Interface IC"</div><div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, E. Hwang, C. Tejeiro, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong>, M. Abdolrazzaghi, C. Tang, P. Liu, Y. Sui, H. You, X. Liu, J. Zariffa, R. Genov — IEEE Trans. Biomed. Circuits Syst., Dec. 2023</div></div></div>
+    </div>
+    <div class="pub-grp" style="margin-top:1.75rem">Conference Papers</div>
+    <div class="pubs">
+      <div class="pub"><div class="pub-ref">[C1]</div><div><span class="pbadge vlsi">IEEE VLSI 2026</span><div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, Honolulu, USA, 2026 (Accepted)</div></div></div>
+      <div class="pub"><div class="pub-ref">[C2]</div><div><span class="pbadge biocas">IEEE BioCAS 2025</span><div class="pub-title">"A Reconfigurable Modular Microelectrode Array Platform for Fast Prototyping of Implantable Closed-Loop Neuromodulation Medical Devices"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, Abu Dhabi, UAE, 2025</div></div></div>
+      <div class="pub"><div class="pub-ref">[C3]</div><div><span class="pbadge">IEEE ISSCC 2025</span><div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div><div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2025</div></div></div>
+      <div class="pub"><div class="pub-ref">[C4]</div><div><span class="pbadge biocas">IEEE BioCAS 2024</span><div class="pub-title">"Multiplierless Spiking Neural Network for Motor Signal Decoding in the Peripheral Nervous System"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, 2024</div></div></div>
+      <div class="pub"><div class="pub-ref">[C5]</div><div><span class="pbadge">IEEE ISSCC 2023</span><div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div><div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, C. Tejeiro, E. Hwang, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2023</div></div></div>
+      <div class="pub"><div class="pub-ref">[C6]</div><div><span class="pbadge biocas">IEEE BioCAS 2023</span><div class="pub-title">"Design Methodology for Energy-Constrained AI Edge Inference in Implantable Medical Devices"</div><div class="pub-authors">J. S. Filho, J. Xu, <strong>M. Kanchwala</strong>, G. O'Leary, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div></div></div>
+      <div class="pub"><div class="pub-ref">[C7]</div><div><span class="pbadge biocas">IEEE BioCAS 2023</span><div class="pub-title">"Advanced Noise-Shaping SAR ADCs Utilizing Single-Capacitor Arbitrary-Resolution DACs for Miniaturized Neural Interfaces"</div><div class="pub-authors">J. Xu, S. Wu, H. You, J. S. Filho, <strong>M. A. Kanchwala</strong>, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div></div></div>
+      <div class="pub"><div class="pub-ref">[C8]</div><div><span class="pbadge biocas">IEEE BioCAS 2023</span><div class="pub-title">"Artificially-Intelligent Fascicle-Selective Bidirectional Peripheral Nerve Interfaces"</div><div class="pub-authors">J. S. Filho, J. Xu, E. Hwang, S. Nag, L. Long, <strong>M. A. Kanchwala</strong>, M. Abdolrazzaghi, Y. Huang, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div></div></div>
+      <div class="pub"><div class="pub-ref">[C9]</div><div><span class="pbadge biocas">IEEE BioCAS 2018</span><div class="pub-title">"A Miniature Wireless Neural Recording System for Chronic Implantation in Freely Moving Animals"</div><div class="pub-authors"><strong>M. A. Kanchwala</strong>, G. A. McCallum, D. M. Durand — IEEE BioCAS, Cleveland, OH, 2018</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ EXPERIENCE ════════════════════════════════════════ -->
+<div class="panel" id="panel-experience">
+  <div class="sec fade">
+    <h2 class="sec-h">Experience</h2>
+    <div class="exp-list">
+      <div class="exp-row"><div><div class="meta-dates">Sep 2021 – Present</div><div class="meta-loc">Toronto, ON, Canada</div></div><div class="body"><h3>Digital ASIC Designer / Research Assistant</h3><div class="org">University of Toronto · Intelligent Sensory Microsystems Lab</div><ul><li>Designed low-power digital ASIC blocks for AI-enabled edge-inference systems in 65 nm CMOS, including ML accelerators, DSP/filtering, adaptive control logic, feature extraction, classifiers, and wireless data-path packet logic.</li><li>Owned PPA-aware digital implementation across 4 tape-outs, spanning microarchitecture, RTL, simulation, synthesis, timing closure, full-chip integration, and post-silicon testing.</li><li>Led the lab's digital design thrust on power-efficient edge inference; collaborated with analog, mixed-signal, and RF designers on AMS simulation, system integration, and silicon validation.</li></ul></div></div>
+      <div class="exp-row"><div><div class="meta-dates">Sep 2018 – Aug 2021</div><div class="meta-loc">Cambridge, MA, USA</div></div><div class="body"><h3>Product Engineer, Connected Care – NPI</h3><div class="org">Philips North America</div><ul><li>Supported NPI for patient monitors, defibrillators, and service solutions across design, manufacturing, and quality.</li><li>Led cross-functional continuous-improvement initiatives; recognized 10 times for impact.</li></ul></div></div>
+      <div class="exp-row"><div><div class="meta-dates">Dec 2015 – Jun 2018</div><div class="meta-loc">Cleveland, OH, USA</div></div><div class="body"><h3>Research Assistant</h3><div class="org">Case Western Reserve University · Neural Engineering Center</div><ul><li>Designed an ultra-low power 2-channel implantable wireless neural recording and stimulating system.</li><li>Integrated UWB-IR TX and BLE MCU control; characterized system power; published at IEEE BioCAS 2018.</li></ul></div></div>
+      <div class="exp-row"><div><div class="meta-dates">Jan 2017 – Dec 2017</div><div class="meta-loc">Cleveland, OH, USA</div></div><div class="body"><h3>Product Engineer Co-Op, Advanced Molecular Imaging</h3><div class="org">Philips North America</div><ul><li>Completed design, validation, and NPI deliverables for the successful launch of the Vereos PET/CT system.</li></ul></div></div>
+    </div>
+  </div>
+  <div class="sec fade">
+    <h2 class="sec-h">Education</h2>
+    <div class="edu-list">
+      <div class="edu-row"><div class="edu-yr">Expected Jul 2026</div><div><h3 class="edu-body" style="font-size:.87rem;font-weight:600;color:var(--text)">PhD, Electrical and Computer Engineering</h3><div class="edu-inst">University of Toronto · Toronto, ON, Canada</div><div class="edu-note">GPA 4.0 · Advisor: Prof. Roman Genov</div></div></div>
+      <div class="edu-row"><div class="edu-yr">Aug 2018</div><div><h3 style="font-size:.87rem;font-weight:600;color:var(--text)">M.S., Biomedical Engineering</h3><div class="edu-inst">Case Western Reserve University · Cleveland, OH, USA</div><div class="edu-note">GPA 4.0</div></div></div>
+      <div class="edu-row"><div class="edu-yr">May 2013</div><div><h3 style="font-size:.87rem;font-weight:600;color:var(--text)">B.Tech, Electronics and Communication Engineering</h3><div class="edu-inst">Sir Padampat Singhania University · Udaipur, India</div><div class="edu-note">Rank 1 in Class · Vice Chancellor's Gold Medal</div></div></div>
+    </div>
+  </div>
+  <div class="sec fade">
+    <h2 class="sec-h">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="sk"><h4>RTL & ASIC Design</h4><ul><li>Microarchitecture & RTL Design</li><li>DSP / Digital Filtering Pipelines</li><li>ML / AI Accelerator Design</li><li>SoC / Full-Chip Integration</li><li>Clock Domain Crossing (CDC)</li><li>PPA Tradeoff Analysis</li><li>Timing Closure</li></ul></div>
+      <div class="sk"><h4>Languages</h4><ul><li>Verilog / SystemVerilog</li><li>Python</li><li>C / C++</li><li>Tcl / Perl</li></ul></div>
+      <div class="sk"><h4>EDA Tools</h4><ul><li>Synopsys Design Compiler, PrimeTime</li><li>Cadence Innovus, Xcelium, Virtuoso</li><li>Xilinx/AMD Vivado, Vitis</li><li>Modelsim</li></ul></div>
+      <div class="sk"><h4>Protocols & Platforms</h4><ul><li>AXI, APB</li><li>UART, SPI, I2C</li><li>Zynq 7020/7030 SoCs</li><li>PYNQ-Z1, Arty-Z7, Genesys2</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ TEACHING & MORE ════════════════════════════════════ -->
+<div class="panel" id="panel-other">
+  <div class="sec fade">
+    <h2 class="sec-h">Teaching</h2>
+    <div class="teach-list">
+      <div class="teach-row"><div class="teach-yrs">4 Years</div><div><div class="teach-course">VLSI Design Methodology</div><div class="teach-role">Teaching Assistant · University of Toronto · RTL-to-GDSII Flow</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">3 Years</div><div><div class="teach-course">Digital Systems</div><div class="teach-role">Teaching Assistant · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">1 Year</div><div><div class="teach-course">Digital Electronics</div><div class="teach-role">Teaching Assistant · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">1 Year</div><div><div class="teach-course">Computer Hardware</div><div class="teach-role">Teaching Assistant · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Ongoing</div><div><div class="teach-course">Student Mentorship</div><div class="teach-role">Mentored 15 undergrad, 8 MEng, and 2 high school students on ASIC, FPGA, ML, and digital circuit design</div></div></div>
+    </div>
+  </div>
+  <div class="sec fade">
+    <h2 class="sec-h">Honors & Awards</h2>
+    <div class="award-list">
+      <div class="award-row"><div class="award-yr">2023, 2024, 2025</div><div><div class="award-name">NSERC Postgraduate Doctoral Scholarship (PGS-D)</div><div class="award-detail">CAD 101,000 · Natural Sciences and Engineering Research Council of Canada</div></div></div>
+      <div class="award-row"><div class="award-yr">2025</div><div><div class="award-name">Frederick Hudd Scholarship</div><div class="award-detail">CAD 3,200 · University of Toronto</div></div></div>
+      <div class="award-row"><div class="award-yr">2018</div><div><div class="award-name">Certificate of Distinguished Service</div><div class="award-detail">Case Western Reserve University</div></div></div>
+      <div class="award-row"><div class="award-yr">2013</div><div><div class="award-name">Vice Chancellor's Gold Medal</div><div class="award-detail">Rank 1 in Class · Sir Padampat Singhania University</div></div></div>
+      <div class="award-row"><div class="award-yr">2010, 2012, 2013</div><div><div class="award-name">Sushila Singhania Academic Scholarship</div><div class="award-detail">Rank 1 in Class · Sir Padampat Singhania University</div></div></div>
+    </div>
+  </div>
+  <div class="sec fade">
+    <h2 class="sec-h">Service & Volunteering</h2>
+    <div class="svc-list">
+      <div class="svc">IEEE ISSCC Saratoga Group Volunteer (5 Years) — Technical and presentation support to IEEE ISSCC speakers.</div>
+      <div class="svc">Junior Fellow, Massey College, University of Toronto (2 Years) — Executive Committee and Community Service Committee Co-Chair.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+const PANELS=['about','projects','publications','experience','other'];
+function show(id,btn){
+  PANELS.forEach(p=>{const el=document.getElementById('panel-'+p);if(el)el.classList.remove('active');});
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id);
+  if(panel){
+    panel.classList.add('active');
+    panel.querySelectorAll('.fade').forEach(el=>{
+      el.classList.remove('in');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
+    });
+  }
+  if(btn)btn.classList.add('active');
+  else{const nb=document.getElementById('nb-'+id);if(nb)nb.classList.add('active');}
+  window.scrollTo(0,0);
+}
+
+let dark=false;
+function toggleTheme(){
+  dark=!dark;
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  const lbl=document.getElementById('th-lbl');if(lbl)lbl.textContent=dark?'light':'dark';
+}
+
+const _e=['mustafaa','.kanchwala','@mail','.utoronto','.ca'];
+let rev=false;
+['e1','e2'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.addEventListener('click',function(ev){
+    ev.preventDefault();
+    if(!rev){this.href='mailto:'+_e.join('');rev=true;}
+    window.location.href=this.href;
+  });
+});
+
+function toggleMoreNews(){
+  const hidden=document.getElementById('news-hidden-items');
+  const btn=document.getElementById('news-more-btn');
+  if(!hidden||!btn)return;
+  const open=hidden.classList.toggle('open');
+  btn.textContent=open?'less ↑':'more ↓';
+}
+
+document.addEventListener('DOMContentLoaded',()=>show('about',document.getElementById('nb-about')));
+</script>
+</body>
+</html>
