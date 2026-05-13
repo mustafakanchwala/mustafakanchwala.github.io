@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;--bg:#fff;--bg2:#f8f8f8;--border:#e8e8e8;--text:#1a1a1a;--text2:#555;--text3:#888;--accent:#1a56db;--accent2:#e8f0fe;--tag:#f0f0f0;--tagtxt:#444;--max:760px;--r:4px;}
+:root{--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;--bg:#fff;--bg2:#f8f8f8;--border:#e8e8e8;--text:#1a1a1a;--text2:#555;--text3:#888;--accent:#1a56db;--accent2:#e8f0fe;--tag:#f0f0f0;--tagtxt:#444;--max:860px;--r:4px;}
 [data-theme=dark]{--bg:#13171f;--bg2:#1c2130;--border:#2a3045;--text:#e8eaf0;--text2:#a0a8bc;--text3:#606880;--accent:#5b8dee;--accent2:#1a2545;--tag:#242938;--tagtxt:#a0a8bc;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{font-size:16px;scroll-behavior:smooth;}
@@ -18,7 +18,7 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 
 /* ── TOP NAV ── */
 .topnav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);}
-.topnav-inner{max-width:calc(var(--max) + 80px);margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:2rem;height:52px;}
+.topnav-inner{max-width:calc(var(--max) + 160px);margin:0 auto;padding:0 4rem;display:flex;align-items:center;gap:2rem;height:52px;}
 .nav-logo{font-size:.82rem;font-weight:600;color:var(--text);white-space:nowrap;text-decoration:none;flex-shrink:0;}
 .nav-logo:hover{text-decoration:none;}
 .nav-links{display:flex;gap:.25rem;flex:1;}
@@ -32,13 +32,13 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 .theme-btn:hover{color:var(--text);}
 
 /* ── PAGE / PANELS ── */
-.page{max-width:calc(var(--max) + 80px);margin:0 auto;padding:3rem 2rem 6rem;}
+.page{max-width:calc(var(--max) + 160px);margin:0 auto;padding:3.5rem 4rem 6rem;}
 .panel{display:none;}.panel.active{display:block;}
 
 /* ── ABOUT HERO ── */
-.hero{display:grid;grid-template-columns:190px 1fr;gap:0 2.75rem;align-items:start;margin-bottom:3.5rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
+.hero{display:grid;grid-template-columns:220px 1fr;gap:0 4rem;align-items:start;margin-bottom:3.5rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
 .hero-left{display:flex;flex-direction:column;align-items:center;gap:1rem;}
-.hero-photo{width:170px;height:170px;border-radius:50%;overflow:hidden;border:3px solid var(--border);background:var(--bg2);box-shadow:0 2px 20px rgba(0,0,0,.09);}
+.hero-photo{width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid var(--border);background:var(--bg2);box-shadow:0 2px 20px rgba(0,0,0,.09);}
 .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 .hero-social{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;}
 .hero-social .ico{width:30px;height:30px;}
@@ -127,7 +127,7 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 .svc::before{content:'→';position:absolute;left:0;color:var(--text3);font-size:.68rem;top:.22rem;}
 
 /* ── FOOTER ── */
-.footer{max-width:var(--max);margin-top:4rem;padding-top:1.1rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.63rem;color:var(--text3);display:flex;justify-content:space-between;}
+.footer{max-width:var(--max);width:100%;margin-top:4rem;padding-top:1.1rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.63rem;color:var(--text3);display:flex;justify-content:space-between;}
 
 /* ── NEWS ── */
 .news-list{display:flex;flex-direction:column;gap:0;}
@@ -146,12 +146,12 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 .fade.in{opacity:1;transform:none;}
 
 /* ── MOBILE ── */
-@media(max-width:680px){
-  .topnav-inner{padding:0 1rem;gap:1rem;}
+@media(max-width:780px){
+  .topnav-inner{padding:0 1rem;gap:1rem;width:100%;}
   .nav-links{gap:.1rem;overflow-x:auto;}
   .nav-btn{font-size:.72rem;padding:.25rem .45rem;white-space:nowrap;}
   .theme-btn{display:none;}
-  .page{padding:2rem 1rem 5rem;}
+  .page{padding:2rem 1.25rem 5rem;}
   .hero{grid-template-columns:1fr;gap:1.5rem;}
   .hero-left{flex-direction:row;align-items:center;gap:1.25rem;}
   .hero-photo{width:100px;height:100px;flex-shrink:0;}
@@ -207,7 +207,7 @@ ul{list-style:none;}img{display:block;max-width:100%;}
       <p class="role">Digital ASIC Designer &nbsp;·&nbsp; PhD Candidate, University of Toronto</p>
       <p>Hi! I'm a Digital ASIC Designer and PhD candidate in the <a href="https://www.eecg.utoronto.ca/~roman/professional/home/home.html" target="_blank">Intelligent Sensory Microsystems Lab</a> at the University of Toronto, advised by <a href="https://www.eecg.utoronto.ca/~roman/" target="_blank">Prof. Roman Genov</a>.</p>
       <p>My research focuses on low-power digital ASIC design for AI/ML accelerators, DSP pipelines, and adaptive controllers targeting event-driven and edge-inference systems for implantable neural interfaces. I have end-to-end ownership across <strong>four taped-out chips in 65 nm CMOS</strong> — from microarchitecture and RTL through synthesis, timing closure, full-chip integration, and post-silicon validation.</p>
-      <p>Results published at <strong>IEEE ISSCC</strong>, <strong>VLSI Technology and Circuits</strong>, IEEE TBCAS, Journal of NeuroEngineering and Rehabilitation, and IEEE BioCAS. Recipient of the <strong>NSERC PGS-D Scholarship</strong> for 2023–2025. You can find more information in my <a href="cv.pdf" target="_blank">CV</a>.</p>
+      <p>Results published at <strong>IEEE ISSCC</strong>, <strong>VLSI Technology and Circuits</strong>, IEEE TBioCAS, and IEEE BioCAS. Recipient of the <strong>NSERC PGS-D Scholarship</strong> for 2023–2025. You can find more information in my <a href="cv.pdf" target="_blank">CV</a>.</p>
       <div class="chips">
         <span class="chip hi">4 Tape-Outs · 65 nm CMOS</span>
         <span class="chip">AI/ML Accelerators</span>
@@ -317,7 +317,7 @@ ul{list-style:none;}img{display:block;max-width:100%;}
     <div class="pubs">
       <div class="pub"><div class="pub-ref">[J1]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong>, J. S. Filho, T. Valiante, R. Genov — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div></div></div>
       <div class="pub"><div class="pub-ref">[J2]</div><div><span class="pbadge jnl">JNER 2026</span><div class="pub-title">"Temporal Interference Stimulation of Peripheral Nerves Induces Functionally Diverse Limb Movements Revealed by Automated Pose Estimation and Unsupervised Behavioral Analysis"</div><div class="pub-authors">J. P. Olorocisimo, S. Nag, H. Zhang, S. Yang, M. Prytula, S. Liu, <strong>M. Kanchwala</strong>, Y. Sun, J. Zariffa, R. Genov — J. NeuroEngineering Rehabil., Vol. 23, Art. 29, 2026</div></div></div>
-      <div class="pub"><div class="pub-ref">[J3]</div><div><span class="pbadge jnl">IEEE TBCAS 2023</span><div class="pub-title">"Fascicle-Selective Ultrasound-Powered Bidirectional Wireless Peripheral Nerve Interface IC"</div><div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, E. Hwang, C. Tejeiro, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong>, M. Abdolrazzaghi, C. Tang, P. Liu, Y. Sui, H. You, X. Liu, J. Zariffa, R. Genov — IEEE Trans. Biomed. Circuits Syst., Dec. 2023</div></div></div>
+      <div class="pub"><div class="pub-ref">[J3]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2023</span><div class="pub-title">"Fascicle-Selective Ultrasound-Powered Bidirectional Wireless Peripheral Nerve Interface IC"</div><div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, E. Hwang, C. Tejeiro, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong>, M. Abdolrazzaghi, C. Tang, P. Liu, Y. Sui, H. You, X. Liu, J. Zariffa, R. Genov — IEEE Trans. Biomed. Circuits Syst., Dec. 2023</div></div></div>
     </div>
     <div class="pub-grp" style="margin-top:1.75rem">Conference Papers</div>
     <div class="pubs">
