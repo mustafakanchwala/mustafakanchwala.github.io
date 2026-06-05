@@ -75,6 +75,8 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 .rh::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity .15s;}
 .rh:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent2);}
 .rh:hover::before{opacity:1;}
+.rh{cursor:pointer;}
+.rh:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 .rh-lbl{font-family:var(--mono);font-size:.59rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.3rem;}
 .rh h4{font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:.35rem;line-height:1.35;}
 .rh p{font-size:.78rem;color:var(--text2);line-height:1.62;}
@@ -128,6 +130,8 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 
 /* ── FOOTER ── */
 .footer{max-width:var(--max);width:100%;margin-top:4rem;padding-top:1.1rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.63rem;color:var(--text3);display:flex;justify-content:space-between;}
+.footer-credit{max-width:var(--max);margin:.75rem 0 0;padding-bottom:2rem;font-family:var(--mono);font-size:.52rem;color:var(--text3);display:flex;justify-content:center;gap:.35rem;opacity:.8;}
+.footer-credit a{color:var(--text3);text-decoration:underline;text-underline-offset:2px;}
 
 /* ── NEWS ── */
 .news-list{display:flex;flex-direction:column;gap:0;}
@@ -211,6 +215,8 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   .exp-row,.edu-row,.teach-row,.award-row{grid-template-columns:1fr;gap:.1rem;}
   .proj-overlay{padding:1rem .5rem;}
   .proj-detail-body{padding:1rem 1.25rem 1.5rem;}
+  .footer{flex-direction:column;gap:.25rem;}
+  .footer-credit{justify-content:flex-start;flex-wrap:wrap;}
 }
 </style>
 </head>
@@ -328,10 +334,10 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   <div class="sec fade">
     <h2 class="sec-h">Research Highlights</h2>
     <div class="rh-grid">
-      <div class="rh"><div class="rh-lbl">Tape-Out 02 · IEEE ISSCC 2025</div><h4>10 nW/channel Event-Driven Neural Interface</h4><p>Designed RTL for a scalable mode-switching controller for an inverter-based AFE, a band-pass digital filter, and an area-efficient ML accelerator for event-driven neural signal detection and processing. Enabled best-in-class <strong>10 nW/channel</strong> event-driven operation.</p><div class="rhtags"><span class="rhtag">ML Accelerator</span><span class="rhtag">10 nW/ch</span><span class="rhtag">ISSCC 2025</span></div></div>
-      <div class="rh"><div class="rh-lbl">Tape-Out 03 · IEEE VLSI 2026</div><h4>Split-Inference Edge-AI SoC</h4><p>Led RTL system design and top-level digital integration for a split-inference AI SoC, owning feature extraction, classification, ML processing, digital filtering, control logic, and SoC data-path integration. Accepted at IEEE VLSI 2026.</p><div class="rhtags"><span class="rhtag">Split-Inference</span><span class="rhtag">BCI</span><span class="rhtag">VLSI 2026</span></div></div>
-      <div class="rh"><div class="rh-lbl">Tape-Out 04 · Edge AI</div><h4>Edge AI Accelerator SoC</h4><p>Designed an Edge AI accelerator and data-path blocks, including a configurable processing element, adaptive AFE mode-switching controller, DSP/filtering pipeline, and data packetization logic. Led digital integration with a custom pad-frame and optimized the data path for efficient wireless transceiver operation.</p><div class="rhtags"><span class="rhtag">AI Accelerator</span><span class="rhtag">DSP</span><span class="rhtag">Wireless TX</span></div></div>
-      <div class="rh"><div class="rh-lbl">IEEE TBCAS 2023 · Journal</div><h4>Fascicle-Selective Peripheral Nerve Interface IC</h4><p>Contributed to a bidirectional wireless PNI IC with 173 dB FOM SAR ADCs and 1.38 pJ/b current-ripple radio, published in IEEE TBCAS and presented at IEEE ISSCC 2023.</p><div class="rhtags"><span class="rhtag">PNI IC</span><span class="rhtag">ISSCC 2023</span><span class="rhtag">TBCAS</span></div></div>
+      <div class="rh" onclick="openProj('to1')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProj('to1');}"><div class="rh-lbl">Tape-Out 01 · Neural Sensing SoC</div><h4>Spatially Zooming ADC Control Logic</h4><p>Designed low-power digital control logic for adaptive dynamic-range operation of an energy-efficient zooming ADC front-end, featuring three incremental resolution modes for a multi-channel neural sensing SoC. Click to view the same detailed project write-up from the Projects tab.</p><div class="rhtags"><span class="rhtag">RTL</span><span class="rhtag">ADC Interface</span><span class="rhtag">Post-Silicon</span></div></div>
+      <div class="rh" onclick="openProj('to2')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProj('to2');}"><div class="rh-lbl">Tape-Out 02 · IEEE ISSCC 2025</div><h4>Event-Driven Neural Interface SoC</h4><p>Designed RTL for a scalable mode-switching controller for an inverter-based AFE, a band-pass digital filter, and an area-efficient ML accelerator for event-driven neural signal detection and processing. Enabled best-in-class <strong>10 nW/channel</strong> event-driven operation.</p><div class="rhtags"><span class="rhtag">ML Accelerator</span><span class="rhtag">10 nW/ch</span><span class="rhtag">ISSCC 2025</span></div></div>
+      <div class="rh" onclick="openProj('to3')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProj('to3');}"><div class="rh-lbl">Tape-Out 03 · IEEE VLSI 2026</div><h4>Split-Inference Edge-AI SoC</h4><p>Led RTL system design and top-level digital integration for a split-inference AI SoC, owning feature extraction, classification, ML processing, digital filtering, control logic, and SoC data-path integration. Accepted at IEEE VLSI 2026.</p><div class="rhtags"><span class="rhtag">Split-Inference</span><span class="rhtag">BCI</span><span class="rhtag">VLSI 2026</span></div></div>
+      <div class="rh" onclick="openProj('to4')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProj('to4');}"><div class="rh-lbl">Tape-Out 04 · Edge AI</div><h4>Edge AI Accelerator SoC</h4><p>Designed an Edge AI accelerator and data-path blocks, including a configurable processing element, adaptive AFE mode-switching controller, DSP/filtering pipeline, and data packetization logic. Led digital integration with a custom pad-frame and optimized the data path for efficient wireless transceiver operation.</p><div class="rhtags"><span class="rhtag">AI Accelerator</span><span class="rhtag">DSP</span><span class="rhtag">Wireless TX</span></div></div>
     </div>
   </div>
 
@@ -339,25 +345,20 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   <div class="sec fade">
     <h2 class="sec-h">Selected Publications</h2>
     <div class="pubs">
-      <div class="pub"><div class="pub-ref">[C9]</div><div><span class="pbadge vlsi">IEEE VLSI 2026</span><div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, 2026 (Accepted)</div></div></div>
-      <div class="pub"><div class="pub-ref">[C7]</div><div><span class="pbadge">IEEE ISSCC 2025</span><div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div><div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, 2025</div></div></div>
-      <div class="pub"><div class="pub-ref">[J2]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong> et al. — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div></div></div>
-      <div class="pub"><div class="pub-ref">[C5]</div><div><span class="pbadge">IEEE ISSCC 2023</span><div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div><div class="pub-authors">J. Xu, J. S. Filho, …, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, 2023</div></div></div>
+      <div class="pub"><div class="pub-ref">[C9]</div><div><span class="pbadge vlsi">IEEE VLSI 2026</span><div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, Honolulu, USA, 2026 (Accepted)</div><div class="pub-btns"><a href="https://vlsi26.mapyourshow.com/8_0/sessions/session-details.cfm?scheduleid=88" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Session</a></div></div></div>
+      <div class="pub"><div class="pub-ref">[C7]</div><div><span class="pbadge">IEEE ISSCC 2025</span><div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div><div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2025</div><div class="pub-btns">
+          <a href="https://doi.org/10.1109/ISSCC49661.2025.10904733" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C7.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div></div></div>
+      <div class="pub"><div class="pub-ref">[J2]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong>, J. S. Filho, T. Valiante, R. Genov — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div><div class="pub-btns"><a href="https://doi.org/10.1109/TBCAS.2024.3481160" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a><a href="J2.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a></div></div></div>
+      <div class="pub"><div class="pub-ref">[C5]</div><div><span class="pbadge">IEEE ISSCC 2023</span><div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div><div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, C. Tejeiro, E. Hwang, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2023</div><div class="pub-btns">
+          <a href="https://doi.org/10.1109/ISSCC42615.2023.10067626" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C5.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div></div></div>
     </div>
     <button class="view-all" onclick="show('publications',document.getElementById('nb-publications'))">View all 12 publications</button>
   </div>
 
-  <div class="footer">
-    <span>Mustafa Kanchwala · University of Toronto</span>
-    <span>June 2026</span>
-  </div>
-  <div style="max-width:var(--max);margin:.75rem auto 0;padding-bottom:2rem;font-family:var(--mono);font-size:.52rem;color:var(--text3);display:flex;justify-content:center;gap:.35rem;opacity:0.8;">
-    <span>Design inspiration from <a href="https://themes.gohugo.io/themes/jughead/" target="_blank" style="color:var(--text3);text-decoration:underline;text-underline-offset:2px;">Hugo/Jughead</a></span>
-    <span>&amp;</span>
-    <span><a href="https://catherinesyeh.github.io/" target="_blank" style="color:var(--text3);text-decoration:underline;text-underline-offset:2px;">Catherine Yeh</a></span>
-    <span>·</span>
-    <span>Built with <a href="https://claude.ai" target="_blank" style="color:var(--text3);text-decoration:underline;text-underline-offset:2px;">Claude</a></span>
-  </div>
 </div><!-- /about -->
 
 <!-- ════ PROJECTS ════════════════════════════════════════════ -->
@@ -396,8 +397,8 @@ ul{list-style:none;}img{display:block;max-width:100%;}
         <div class="pub-title">"Temporal Interference Stimulation of Peripheral Nerves Induces Functionally Diverse Limb Movements Revealed by Automated Pose Estimation and Unsupervised Behavioral Analysis"</div>
         <div class="pub-authors">J. P. Olorocisimo, S. Nag, H. Zhang, S. Yang, M. Prytula, S. Liu, <strong>M. Kanchwala</strong>, Y. Sun, J. Zariffa, R. Genov — J. NeuroEngineering Rehabil., Vol. 23, Art. 29, 2026</div>
         <div class="pub-btns">
-          <a href="https://doi.org/10.1186/s12984-025-01825-3" target="_blank" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1186/s12984-025-01825-3" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="J3.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
         </div>
       </div></div>
 
@@ -441,8 +442,9 @@ ul{list-style:none;}img{display:block;max-width:100%;}
         <div class="pub-title">"A Reconfigurable Modular Microelectrode Array Platform for Fast Prototyping of Implantable Closed-Loop Neuromodulation Medical Devices"</div>
         <div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, Abu Dhabi, UAE, 2025</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/BioCAS67066.2025.00073" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C8.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        
         </div>
       </div></div>
 
@@ -451,18 +453,19 @@ ul{list-style:none;}img{display:block;max-width:100%;}
         <div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div>
         <div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2025</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/ISSCC49661.2025.10904733" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C7.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
         </div>
       </div></div>
 
       <div class="pub"><div class="pub-ref">[C6]</div><div>
         <span class="pbadge biocas">IEEE BioCAS 2024</span>
         <div class="pub-title">"Multiplierless Spiking Neural Network for Motor Signal Decoding in the Peripheral Nervous System"</div>
-        <div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, 2024</div>
+        <div class="pub-authors">Q. Deng, J. Ma, H. Cai, H. You, <strong>M. Kanchwala</strong>, J. Xu, A. Amirsoleimani, J. Zariffa, R. Genov — IEEE BioCAS, 2024</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/BioCAS61083.2024.10798280" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C6.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        
         </div>
       </div></div>
 
@@ -471,8 +474,8 @@ ul{list-style:none;}img{display:block;max-width:100%;}
         <div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div>
         <div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, C. Tejeiro, E. Hwang, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2023</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/ISSCC42615.2023.10067626" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C5.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
         </div>
       </div></div>
 
@@ -481,28 +484,31 @@ ul{list-style:none;}img{display:block;max-width:100%;}
         <div class="pub-title">"Design Methodology for Energy-Constrained AI Edge Inference in Implantable Medical Devices"</div>
         <div class="pub-authors">J. S. Filho, J. Xu, <strong>M. Kanchwala</strong>, G. O'Leary, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/BioCAS58349.2023.10388749" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C4.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        
         </div>
       </div></div>
 
       <div class="pub"><div class="pub-ref">[C3]</div><div>
         <span class="pbadge biocas">IEEE BioCAS 2023</span>
         <div class="pub-title">"Advanced Noise-Shaping SAR ADCs Utilizing Single-Capacitor Arbitrary-Resolution DACs for Miniaturized Neural Interfaces"</div>
-        <div class="pub-authors">J. Xu, S. Wu, H. You, J. S. Filho, <strong>M. A. Kanchwala</strong>, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
+        <div class="pub-authors">J. Xu, S. Wu, H. You, J. S. Filho, <strong>M. Kanchwala</strong>, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/BioCAS58349.2023.10388439" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C3.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        
         </div>
       </div></div>
 
       <div class="pub"><div class="pub-ref">[C2]</div><div>
         <span class="pbadge biocas">IEEE BioCAS 2023</span>
         <div class="pub-title">"Artificially-Intelligent Fascicle-Selective Bidirectional Peripheral Nerve Interfaces"</div>
-        <div class="pub-authors">J. S. Filho, J. Xu, E. Hwang, S. Nag, L. Long, <strong>M. A. Kanchwala</strong>, M. Abdolrazzaghi, Y. Huang, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
+        <div class="pub-authors">J. S. Filho, J. Xu, E. Hwang, S. Nag, L. Long, <strong>M. Kanchwala</strong>, M. Abdolrazzaghi, Y. Huang, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/BioCAS58349.2023.10388693" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C2.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        
         </div>
       </div></div>
 
@@ -511,8 +517,9 @@ ul{list-style:none;}img{display:block;max-width:100%;}
         <div class="pub-title">"A Miniature Wireless Neural Recording System for Chronic Implantation in Freely Moving Animals"</div>
         <div class="pub-authors"><strong>M. A. Kanchwala</strong>, G. A. McCallum, D. M. Durand — IEEE BioCAS, Cleveland, OH, 2018</div>
         <div class="pub-btns">
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
-          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+          <a href="https://doi.org/10.1109/BIOCAS.2018.8584701" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="C1.pdf" target="_blank" rel="noopener" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        
         </div>
       </div></div>
 
@@ -611,6 +618,17 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   </div>
 </div>
 
+<!-- GLOBAL FOOTER -->
+<div class="footer">
+  <span>Mustafa Kanchwala · University of Toronto</span>
+  <span>June 2026</span>
+</div>
+<div class="footer-credit" id="footer-credit">
+  <span>Design inspiration from <a href="https://themes.gohugo.io/themes/jughead/" target="_blank">Hugo/Jughead</a></span>
+  <span>·</span>
+  <span>Built with <a href="https://claude.ai" target="_blank">Claude</a></span>
+</div>
+
 </div><!-- /page -->
 
 <script>
@@ -628,6 +646,8 @@ function show(id,btn){
   }
   if(btn)btn.classList.add('active');
   else{const nb=document.getElementById('nb-'+id);if(nb)nb.classList.add('active');}
+  const footerCredit=document.getElementById('footer-credit');
+  if(footerCredit) footerCredit.style.display = (id === 'about') ? 'flex' : 'none';
   window.scrollTo(0,0);
 }
 
