@@ -133,6 +133,8 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 .news-list{display:flex;flex-direction:column;gap:0;}
 .news-item{display:grid;grid-template-columns:90px 1fr;gap:0 1.1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:baseline;}
 .news-item:first-child{border-top:1px solid var(--border);}
+.news-collapsible{display:none;}
+.news-collapsible.open{display:grid;}
 .news-date{font-family:var(--mono);font-size:.61rem;color:var(--text3);white-space:nowrap;padding-top:.05rem;}
 .news-body{font-size:.88rem;color:var(--text2);line-height:1.7;}
 .news-body strong{color:var(--text);font-weight:600;}
@@ -140,12 +142,62 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 .news-tag{display:inline-block;font-family:var(--mono);font-size:.57rem;letter-spacing:.05em;text-transform:uppercase;padding:.1rem .38rem;border-radius:2px;background:var(--accent2);color:var(--accent);margin-right:.4rem;vertical-align:middle;position:relative;top:-.05rem;}
 .news-more{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;color:var(--text3);font-family:var(--mono);margin-top:.75rem;cursor:pointer;background:none;border:none;padding:0;transition:color .12s;}
 .news-more:hover{color:var(--accent);}
-.news-hidden{display:none;}
-.news-hidden.open{display:flex;flex-direction:column;gap:0;}
-.fade{opacity:0;transform:translateY(10px);transition:opacity .42s ease,transform .42s ease;}
-.fade.in{opacity:1;transform:none;}
-
-/* ── MOBILE ── */
+/* ── PROJECT DETAIL OVERLAY ── */
+.proj-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);overflow-y:auto;}
+.proj-overlay.open{display:flex;align-items:flex-start;justify-content:center;padding:2.5rem 1rem 2rem;}
+.proj-detail{background:var(--bg);border-radius:8px;width:100%;max-width:720px;box-shadow:0 8px 40px rgba(0,0,0,.18);}
+.proj-detail-hdr{padding:1.4rem 1.75rem 1rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.proj-detail-hdr h2{font-size:1rem;font-weight:600;color:var(--text);line-height:1.35;}
+.proj-close{background:none;border:1px solid var(--border);border-radius:var(--r);padding:.22rem .52rem;cursor:pointer;font-size:.78rem;color:var(--text3);flex-shrink:0;transition:color .12s,border-color .12s;font-family:var(--font);}
+.proj-close:hover{color:var(--accent);border-color:var(--accent);}
+.proj-detail-body{padding:1.4rem 1.75rem 2rem;}
+.pdmeta{font-family:var(--mono);font-size:.63rem;color:var(--accent);margin-bottom:1rem;letter-spacing:.04em;}
+.pdesc{font-size:.87rem;color:var(--text2);line-height:1.82;margin-bottom:1.4rem;}
+.pd-lbl{font-family:var(--mono);font-size:.61rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.45rem;padding-bottom:.28rem;border-bottom:1px solid var(--border);margin-top:1.2rem;}
+.pd-lbl:first-of-type{margin-top:0;}
+.pd-body{font-size:.87rem;color:var(--text2);line-height:1.82;}
+.pd-body ul{display:flex;flex-direction:column;gap:.28rem;margin-top:.35rem;}
+.pd-body li{padding-left:1rem;position:relative;}
+.pd-body li::before{content:'→';position:absolute;left:0;color:var(--text3);font-size:.68rem;top:.24rem;}
+.pd-tags{display:flex;flex-wrap:wrap;gap:.28rem;margin-top:1rem;}
+.pd-tag{font-family:var(--mono);font-size:.58rem;background:var(--tag);color:var(--tagtxt);padding:.14rem .38rem;border-radius:2px;}
+.card{cursor:pointer;}
+/* ── BLOG / SUBSTACK ── */
+.blog-intro{font-size:.8rem;color:var(--text2);line-height:1.75;margin-bottom:1.15rem;max-width:680px;}
+.blog-actions{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.35rem;}
+.blog-pill{display:inline-flex;align-items:center;gap:.32rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.03em;padding:.28rem .62rem;border-radius:3px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);text-decoration:none;transition:color .12s,border-color .12s,background .12s;}
+.blog-pill:hover{color:var(--accent);border-color:var(--accent);background:var(--accent2);text-decoration:none;}
+.blog-list{display:flex;flex-direction:column;gap:.85rem;}
+.blog-card{display:grid;grid-template-columns:120px 1fr;gap:0;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);position:relative;overflow:hidden;transition:border-color .15s,box-shadow .15s,transform .15s;}
+.blog-card::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity .15s;}
+.blog-card:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent2);transform:translateY(-1px);}
+.blog-card:hover::before{opacity:1;}
+.blog-card-date{padding:1.05rem .95rem 1rem 1.15rem;border-right:1px solid var(--border);font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text3);}
+.blog-month{font-size:.62rem;line-height:1.25;}
+.blog-year{font-size:.78rem;color:var(--accent);font-weight:500;margin-top:.12rem;}
+.blog-card-body{padding:1.02rem 1.2rem 1.08rem;}
+.blog-card-kicker{font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.28rem;}
+.blog-card-title{font-size:.92rem;font-weight:600;color:var(--text);margin-bottom:.38rem;line-height:1.38;}
+.blog-card-title a{color:var(--text);text-decoration:none;}
+.blog-card-title a:hover{color:var(--accent);}
+.blog-card-excerpt{font-size:.8rem;color:var(--text2);line-height:1.68;margin-bottom:.72rem;}
+.blog-card-link{font-family:var(--mono);font-size:.63rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;}
+.blog-card-link:hover{text-decoration:underline;}
+.blog-status{font-family:var(--mono);font-size:.72rem;color:var(--text3);padding:1rem 0;}
+.blog-empty{background:var(--bg2);border:1px dashed var(--border);border-radius:var(--r);padding:1rem 1.15rem;font-size:.78rem;color:var(--text2);line-height:1.7;}
+.blog-empty a{color:var(--accent);}
+@media(max-width:780px){
+  .blog-card{grid-template-columns:1fr;}
+  .blog-card-date{border-right:none;border-bottom:1px solid var(--border);display:flex;gap:.4rem;padding:.78rem 1rem .68rem;}
+  .blog-year{margin-top:0;}
+}
+/* ── PUB BUTTONS ── */
+.pub-btns{display:flex;gap:.4rem;margin-top:.65rem;flex-wrap:wrap;}
+.pub-btn{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.03em;padding:.28rem .62rem;border-radius:3px;border:1px solid var(--border);background:var(--bg);color:var(--text2);cursor:pointer;text-decoration:none;transition:color .12s,border-color .12s,background .12s;}
+.pub-btn:hover{color:var(--accent);border-color:var(--accent);background:var(--accent2);text-decoration:none;}
+.pub-btn.disabled{opacity:.38;pointer-events:none;cursor:default;}
+.pub-btn svg{flex-shrink:0;}
+/* Mobile */
 @media(max-width:780px){
   .topnav-inner{padding:0 1rem;gap:1rem;width:100%;}
   .nav-links{gap:.1rem;overflow-x:auto;}
@@ -157,10 +209,31 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   .hero-photo{width:100px;height:100px;flex-shrink:0;}
   .grid2,.rh-grid,.skills-grid{grid-template-columns:1fr;}
   .exp-row,.edu-row,.teach-row,.award-row{grid-template-columns:1fr;gap:.1rem;}
+  .proj-overlay{padding:1rem .5rem;}
+  .proj-detail-body{padding:1rem 1.25rem 1.5rem;}
 }
 </style>
 </head>
 <body>
+
+<!-- PROJECT DETAIL OVERLAY -->
+<div class="proj-overlay" id="proj-overlay" onclick="closeProjIfBg(event)">
+  <div class="proj-detail" id="proj-detail">
+    <div class="proj-detail-hdr">
+      <h2 id="pd-title"></h2>
+      <button class="proj-close" onclick="closeProj()">✕ close</button>
+    </div>
+    <div class="proj-detail-body">
+      <div class="pdmeta" id="pd-meta"></div>
+      <div class="pdesc" id="pd-desc"></div>
+      <div class="pd-lbl">My Contribution</div>
+      <div class="pd-body" id="pd-contrib"></div>
+      <div class="pd-lbl" id="pd-skills-lbl">Skills &amp; Tools</div>
+      <div class="pd-tags" id="pd-tags"></div>
+      <div id="pd-extra"></div>
+    </div>
+  </div>
+</div>
 
 <!-- TOP NAV -->
 <nav class="topnav">
@@ -172,6 +245,7 @@ ul{list-style:none;}img{display:block;max-width:100%;}
       <button class="nav-btn"        id="nb-publications" onclick="show('publications',this)">Publications</button>
       <button class="nav-btn"        id="nb-experience"   onclick="show('experience',this)">Experience</button>
       <button class="nav-btn"        id="nb-other"        onclick="show('other',this)">Teaching &amp; More</button>
+      <button class="nav-btn"        id="nb-blog"         onclick="show('blog',this)">Blog</button>
     </div>
     <div class="nav-right">
       <a href="#" id="e1" class="ico" title="Email"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
@@ -204,15 +278,17 @@ ul{list-style:none;}img{display:block;max-width:100%;}
     </div>
     <div class="hero-right">
       <h1>Mustafa Kanchwala</h1>
-      <p class="role">Digital ASIC Designer &nbsp;·&nbsp; PhD Candidate, University of Toronto</p>
-      <p>Hi! I'm a Digital ASIC Designer and PhD candidate in the <a href="https://www.eecg.utoronto.ca/~roman/professional/home/home.html" target="_blank">Intelligent Sensory Microsystems Lab</a> at the University of Toronto, advised by <a href="https://www.eecg.utoronto.ca/~roman/" target="_blank">Prof. Roman Genov</a>.</p>
-      <p>My research focuses on low-power digital ASIC design for AI/ML accelerators, DSP pipelines, and adaptive controllers targeting event-driven and edge-inference systems for implantable neural interfaces. I have end-to-end ownership across <strong>four taped-out chips in 65 nm CMOS</strong> — from microarchitecture and RTL through synthesis, timing closure, full-chip integration, and post-silicon validation.</p>
-      <p>Results published at <strong>IEEE ISSCC</strong>, <strong>VLSI Technology and Circuits</strong>, IEEE TBioCAS, and IEEE BioCAS. Recipient of the <strong>NSERC PGS-D Scholarship</strong> for 2023–2025. You can find more information in my <a href="cv.pdf" target="_blank">CV</a>.</p>
+      <p class="role">Digital ASIC Designer &nbsp;·&nbsp; Computer Architecture &nbsp;·&nbsp; PhD Candidate, University of Toronto</p>
+      <p>Hi! I'm a digital ASIC and computer architecture engineer focused on energy-efficient hardware for AI, signal processing, and edge-intelligence systems. I am a PhD candidate in the <a href="https://www.eecg.utoronto.ca/~roman/professional/home/home.html" target="_blank">Intelligent Sensory Microsystems Lab</a> at the University of Toronto, advised by <a href="https://www.eecg.utoronto.ca/~roman/" target="_blank">Prof. Roman Genov</a>.</p>
+      <p>Over five years of my PhD, I have worked across the full chip-design stack: defining system architecture, translating algorithms into microarchitecture, writing synthesizable RTL, integrating digital subsystems into mixed-signal SoCs, closing timing, validating on FPGA, and supporting silicon bring-up. Across <strong>four 65 nm CMOS tape-outs</strong>, I have contributed to streaming data paths, DSP/filtering pipelines, adaptive control, feature extraction, ML inference, packetization, and hardware/software validation.</p>
+      <p>My strengths are in RTL design, microarchitecture, SoC integration, and ML accelerator design. I enjoy working at the boundary between algorithms and hardware — training and evaluating ML models, understanding their compute and memory requirements, and mapping them into efficient digital architectures for real-time inference. Results published at <strong>IEEE ISSCC</strong>, <strong>VLSI Technology and Circuits</strong>, IEEE TBioCAS, and IEEE BioCAS. Recipient of the <strong>NSERC PGS-D Scholarship</strong> for 2023–2025.</p>
       <div class="chips">
         <span class="chip hi">4 Tape-Outs · 65 nm CMOS</span>
-        <span class="chip">AI/ML Accelerators</span>
-        <span class="chip">DSP / Filtering</span>
+        <span class="chip">RTL / Microarchitecture</span>
+        <span class="chip">ML Accelerators</span>
+        <span class="chip">Computer Architecture</span>
         <span class="chip">SoC Integration</span>
+        <span class="chip">FPGA Prototyping</span>
         <span class="chip">IEEE ISSCC · VLSI</span>
         <span class="chip">NSERC PGS-D</span>
       </div>
@@ -222,25 +298,22 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   <!-- News -->
   <div class="sec fade">
     <h2 class="sec-h">News</h2>
-    <div class="news-list">
+    <div class="news-list" id="news-list">
       <div class="news-item">
         <div class="news-date">Jun 2026</div>
         <div class="news-body">
           <span class="news-tag">Conference</span>
-          <strong>Paper accepted at IEEE VLSI 2026.</strong> I will be presenting "A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants" at the <a href="https://www.vlsisymposium.org/" target="_blank">IEEE Symposium on VLSI Technology and Circuits</a> in Honolulu, Hawaii.
+          <strong>Paper accepted at IEEE VLSI 2026.</strong> I will be presenting "A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants" at the <a href="https://vlsi26.mapyourshow.com/8_0/sessions/session-details.cfm?scheduleid=88" target="_blank">2026 IEEE/JSAP Symposium on VLSI Technology &amp; Circuits</a> in Honolulu, Hawaii.
         </div>
       </div>
-    </div>
-    <button class="news-more" id="news-more-btn" onclick="toggleMoreNews()">more ↓</button>
-    <div class="news-hidden" id="news-hidden-items">
-      <div class="news-item">
+      <div class="news-item news-collapsible">
         <div class="news-date">Nov 2025</div>
         <div class="news-body">
           <span class="news-tag">Demo</span>
           <strong>Demo presented at CMC TEXPO 2025.</strong> Presented a live demo of "A Reconfigurable Modular Microelectrode Array Platform for Fast Prototyping of Implantable Closed-Loop Neuromodulation Medical Devices" at the <a href="https://fabricinnovation.ca/texpo-2025/" target="_blank">Canadian Microsystems Corporation TEXPO 2025</a>.
         </div>
       </div>
-      <div class="news-item">
+      <div class="news-item news-collapsible">
         <div class="news-date">Oct 2025</div>
         <div class="news-body">
           <span class="news-tag">Conference</span>
@@ -248,15 +321,16 @@ ul{list-style:none;}img{display:block;max-width:100%;}
         </div>
       </div>
     </div>
+    <button class="news-more" id="news-more-btn" onclick="toggleMoreNews()">more ↓</button>
   </div>
 
   <!-- Research Highlights -->
   <div class="sec fade">
     <h2 class="sec-h">Research Highlights</h2>
     <div class="rh-grid">
-      <div class="rh"><div class="rh-lbl">Tape-Out 02 · IEEE ISSCC 2025</div><h4>10 nW/channel Event-Driven Neural Interface</h4><p>ML accelerator, digital filter, and mode-switching controller for an inverter-based AFE enabling best-in-class 10 nW/channel event-driven operation in 65 nm CMOS.</p><div class="rhtags"><span class="rhtag">ML Accelerator</span><span class="rhtag">10 nW/ch</span><span class="rhtag">ISSCC 2025</span></div></div>
-      <div class="rh"><div class="rh-lbl">Tape-Out 03 · IEEE VLSI 2026</div><h4>Split-Inference BCI SoC — Lowest Reported Power</h4><p>Led full-chip integration of a split-inference neural processing SoC achieving the lowest reported power among existing spike BCI systems. Accepted at IEEE VLSI 2026.</p><div class="rhtags"><span class="rhtag">Split-Inference</span><span class="rhtag">BCI</span><span class="rhtag">VLSI 2026</span></div></div>
-      <div class="rh"><div class="rh-lbl">Tape-Out 04 · Edge AI</div><h4>CNN / Transformer Accelerator SoC</h4><p>Configurable CNN/Transformer processing element with adaptive AFE control, DSP pipeline, and packetizer — end-to-end from custom pad-frame through wireless TX.</p><div class="rhtags"><span class="rhtag">CNN/Transformer</span><span class="rhtag">DSP</span><span class="rhtag">Wireless TX</span></div></div>
+      <div class="rh"><div class="rh-lbl">Tape-Out 02 · IEEE ISSCC 2025</div><h4>10 nW/channel Event-Driven Neural Interface</h4><p>Designed RTL for a scalable mode-switching controller for an inverter-based AFE, a band-pass digital filter, and an area-efficient ML accelerator for event-driven neural signal detection and processing. Enabled best-in-class <strong>10 nW/channel</strong> event-driven operation.</p><div class="rhtags"><span class="rhtag">ML Accelerator</span><span class="rhtag">10 nW/ch</span><span class="rhtag">ISSCC 2025</span></div></div>
+      <div class="rh"><div class="rh-lbl">Tape-Out 03 · IEEE VLSI 2026</div><h4>Split-Inference Edge-AI SoC</h4><p>Led RTL system design and top-level digital integration for a split-inference AI SoC, owning feature extraction, classification, ML processing, digital filtering, control logic, and SoC data-path integration. Accepted at IEEE VLSI 2026.</p><div class="rhtags"><span class="rhtag">Split-Inference</span><span class="rhtag">BCI</span><span class="rhtag">VLSI 2026</span></div></div>
+      <div class="rh"><div class="rh-lbl">Tape-Out 04 · Edge AI</div><h4>Edge AI Accelerator SoC</h4><p>Designed an Edge AI accelerator and data-path blocks, including a configurable processing element, adaptive AFE mode-switching controller, DSP/filtering pipeline, and data packetization logic. Led digital integration with a custom pad-frame and optimized the data path for efficient wireless transceiver operation.</p><div class="rhtags"><span class="rhtag">AI Accelerator</span><span class="rhtag">DSP</span><span class="rhtag">Wireless TX</span></div></div>
       <div class="rh"><div class="rh-lbl">IEEE TBCAS 2023 · Journal</div><h4>Fascicle-Selective Peripheral Nerve Interface IC</h4><p>Contributed to a bidirectional wireless PNI IC with 173 dB FOM SAR ADCs and 1.38 pJ/b current-ripple radio, published in IEEE TBCAS and presented at IEEE ISSCC 2023.</p><div class="rhtags"><span class="rhtag">PNI IC</span><span class="rhtag">ISSCC 2023</span><span class="rhtag">TBCAS</span></div></div>
     </div>
   </div>
@@ -265,9 +339,9 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   <div class="sec fade">
     <h2 class="sec-h">Selected Publications</h2>
     <div class="pubs">
-      <div class="pub"><div class="pub-ref">[C1]</div><div><span class="pbadge vlsi">IEEE VLSI 2026</span><div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, 2026 (Accepted)</div></div></div>
-      <div class="pub"><div class="pub-ref">[C3]</div><div><span class="pbadge">IEEE ISSCC 2025</span><div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div><div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, 2025</div></div></div>
-      <div class="pub"><div class="pub-ref">[J1]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong> et al. — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div></div></div>
+      <div class="pub"><div class="pub-ref">[C9]</div><div><span class="pbadge vlsi">IEEE VLSI 2026</span><div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, 2026 (Accepted)</div></div></div>
+      <div class="pub"><div class="pub-ref">[C7]</div><div><span class="pbadge">IEEE ISSCC 2025</span><div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div><div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, 2025</div></div></div>
+      <div class="pub"><div class="pub-ref">[J2]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong> et al. — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div></div></div>
       <div class="pub"><div class="pub-ref">[C5]</div><div><span class="pbadge">IEEE ISSCC 2023</span><div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div><div class="pub-authors">J. Xu, J. S. Filho, …, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, 2023</div></div></div>
     </div>
     <button class="view-all" onclick="show('publications',document.getElementById('nb-publications'))">View all 12 publications</button>
@@ -275,7 +349,7 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 
   <div class="footer">
     <span>Mustafa Kanchwala · University of Toronto</span>
-    <span>May 2026</span>
+    <span>June 2026</span>
   </div>
   <div style="max-width:var(--max);margin:.75rem auto 0;padding-bottom:2rem;font-family:var(--mono);font-size:.52rem;color:var(--text3);display:flex;justify-content:center;gap:.35rem;opacity:0.8;">
     <span>Design inspiration from <a href="https://themes.gohugo.io/themes/jughead/" target="_blank" style="color:var(--text3);text-decoration:underline;text-underline-offset:2px;">Hugo/Jughead</a></span>
@@ -291,19 +365,19 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   <div class="sec fade">
     <h2 class="sec-h">Silicon Tape-Outs</h2>
     <div class="grid2">
-      <div class="card"><div class="card-lbl">Tape-Out 01</div><h3>Spatially Zooming ADC Control Logic</h3><div class="card-sub">65 nm CMOS · Neural Sensing SoC</div><p>Low-power digital control logic for adaptive dynamic-range operation of an energy-efficient zooming ADC front-end, with three incremental resolution modes for a multi-channel neural sensing SoC.</p><div class="ctags"><span class="ctag">RTL</span><span class="ctag">Synthesis</span><span class="ctag">ADC Interface</span><span class="ctag">Post-Silicon</span></div></div>
-      <div class="card"><div class="card-lbl">Tape-Out 02</div><h3>Event-Driven Neural Interface SoC</h3><div class="card-sub">65 nm CMOS · IEEE ISSCC 2025</div><p>Mode-switching controller for inverter-based AFE, band-pass digital filter, and ML accelerator. Best-in-class <strong>10 nW/channel</strong> event-driven operation. Published at IEEE ISSCC 2025.</p><div class="ctags"><span class="ctag">ML Accelerator</span><span class="ctag">10 nW/ch</span><span class="ctag">ISSCC 2025</span></div></div>
-      <div class="card"><div class="card-lbl">Tape-Out 03</div><h3>Split-Inference Edge-AI SoC</h3><div class="card-sub">65 nm CMOS · IEEE VLSI 2026</div><p>Led digital system design and full-chip integration for a split-inference neural processing SoC achieving the lowest reported power among existing spike BCI systems. Accepted at IEEE VLSI 2026.</p><div class="ctags"><span class="ctag">Split-Inference</span><span class="ctag">BCI</span><span class="ctag">Full-Chip</span><span class="ctag">VLSI 2026</span></div></div>
-      <div class="card"><div class="card-lbl">Tape-Out 04</div><h3>CNN / Transformer Accelerator SoC</h3><div class="card-sub">65 nm CMOS · Edge Inference</div><p>Configurable CNN/Transformer processing element, adaptive AFE mode-switching controller, DSP filtering pipeline, and packetizer. Custom pad-frame and end-to-end data-path from ADC through wireless TX.</p><div class="ctags"><span class="ctag">CNN/Transformer</span><span class="ctag">DSP</span><span class="ctag">Pad-Frame</span><span class="ctag">Wireless TX</span></div></div>
+      <div class="card" onclick="openProj('to1')"><div class="card-lbl">Tape-Out 01 · Nov 2021 – Sep 2022</div><h3>Spatially Zooming ADC Control Logic</h3><div class="card-sub">65 nm CMOS · Neural Sensing SoC</div><p>Designed low-power digital control logic for adaptive dynamic-range operation of an energy-efficient zooming ADC front-end, featuring three incremental resolution modes for a multi-channel neural sensing SoC. Led microarchitecture, RTL, simulation, synthesis, block integration, and post-silicon validation.</p><div class="ctags"><span class="ctag">RTL</span><span class="ctag">Synthesis</span><span class="ctag">ADC Interface</span><span class="ctag">Post-Silicon</span></div></div>
+      <div class="card" onclick="openProj('to2')"><div class="card-lbl">Tape-Out 02 · Sep 2022 – Feb 2025</div><h3>Event-Driven Neural Interface SoC</h3><div class="card-sub">65 nm CMOS · IEEE ISSCC 2025</div><p>Designed RTL for a scalable mode-switching controller for an inverter-based AFE, a band-pass digital filter, and an area-efficient ML accelerator for event-driven neural signal detection and processing. Enabled best-in-class <strong>10 nW/channel</strong> event-driven operation. Published at IEEE ISSCC 2025.</p><div class="ctags"><span class="ctag">ML Accelerator</span><span class="ctag">Digital Filter</span><span class="ctag">10 nW/ch</span><span class="ctag">ISSCC 2025</span></div></div>
+      <div class="card" onclick="openProj('to3')"><div class="card-lbl">Tape-Out 03 · Jan 2023 – Jan 2026</div><h3>Split-Inference Edge-AI SoC</h3><div class="card-sub">65 nm CMOS · IEEE VLSI 2026</div><p>Led RTL system design and top-level digital integration for a split-inference AI SoC, owning feature extraction, classification, ML processing, digital filtering, control logic, and SoC data-path integration. Designed low-power accelerator/control blocks to reduce on-chip compute and off-chip communication energy while preserving real-time inference behavior. Accepted at IEEE VLSI 2026.</p><div class="ctags"><span class="ctag">Split-Inference</span><span class="ctag">BCI</span><span class="ctag">Full-Chip</span><span class="ctag">VLSI 2026</span></div></div>
+      <div class="card" onclick="openProj('to4')"><div class="card-lbl">Tape-Out 04 · Mar 2025 – Present</div><h3>Edge AI Accelerator SoC</h3><div class="card-sub">65 nm CMOS · Edge Inference</div><p>Designed an Edge AI accelerator and data-path blocks, including a configurable processing element, adaptive AFE mode-switching controller, DSP/filtering pipeline, and data packetization logic for edge-inference SoC operation. Led digital integration with a custom pad-frame and optimized the data path for efficient wireless transceiver operation.</p><div class="ctags"><span class="ctag">CNN/Transformer</span><span class="ctag">DSP Pipeline</span><span class="ctag">Pad-Frame</span><span class="ctag">Wireless TX</span></div></div>
     </div>
   </div>
   <div class="sec fade">
-    <h2 class="sec-h">FPGA Projects</h2>
+    <h2 class="sec-h">FPGA &amp; Platform Projects</h2>
     <div class="grid2">
-      <div class="card"><div class="card-lbl">FPGA · Zynq SoC</div><h3>Neural Signal Processing Pipeline</h3><div class="card-sub">Zynq 7020/7030 · Vivado / Vitis</div><p>Real-time neural signal acquisition, filtering, and feature extraction on a Zynq SoC via AXI interconnects. Rapid prototyping platform for verifying ASIC subsystems prior to tape-out.</p><div class="ctags"><span class="ctag">AXI</span><span class="ctag">HLS</span><span class="ctag">PS/PL</span><span class="ctag">Vivado</span></div></div>
-      <div class="card"><div class="card-lbl">FPGA · Genesys2</div><h3>RTL Verification & Bring-Up Platform</h3><div class="card-sub">Genesys2 · SystemVerilog / Tcl</div><p>FPGA-based verification environments for pre-silicon RTL validation of ML accelerator and DSP blocks, including stimulus generation, functional coverage, and interface emulation for ASIC bring-up.</p><div class="ctags"><span class="ctag">RTL Verification</span><span class="ctag">SystemVerilog</span><span class="ctag">Bring-Up</span></div></div>
-      <div class="card"><div class="card-lbl">FPGA · PYNQ-Z1</div><h3>Edge ML Inference Prototype</h3><div class="card-sub">PYNQ-Z1 / Arty-Z7 · Python + RTL</div><p>Configurable edge-inference pipelines for neural signal classifiers using Python-controlled FPGA fabric, enabling rapid ML model iteration ahead of ASIC implementation.</p><div class="ctags"><span class="ctag">PYNQ</span><span class="ctag">ML Inference</span><span class="ctag">Python</span><span class="ctag">Vitis AI</span></div></div>
-      <div class="card"><div class="card-lbl">FPGA · Zynq / Custom</div><h3>Wireless Data-Path & Packetizer</h3><div class="card-sub">Zynq SoC · APB / SPI / UART</div><p>Configurable packetization and wireless data-path module validated on FPGA, subsequently ported to synthesizable RTL for the CNN/Transformer SoC tape-out.</p><div class="ctags"><span class="ctag">Packetizer</span><span class="ctag">APB</span><span class="ctag">Wireless TX</span><span class="ctag">RTL Port</span></div></div>
+      <div class="card" onclick="openProj('fpga1')"><div class="card-lbl">FPGA / ASIC / PCB · May 2025 – Apr 2026</div><h3>Split-Inference SoC Real-Time Validation</h3><div class="card-sub">Zynq FPGA · Custom PCB · On-Chip Inference</div><p>Integrated a split-inference Edge AI SoC with a Zynq-based neural recording/stimulation platform, enabling real-time neural-data streaming into the chip's on-chip spike-classification engine and retrieval of inference outputs. Designed Verilog interface/data-path logic and custom PCB for modular chip-to-platform validation; validated the workflow from model pre-training to real-time on-chip classification.</p><div class="ctags"><span class="ctag">Verilog</span><span class="ctag">FPGA</span><span class="ctag">Custom PCB</span><span class="ctag">On-Chip Inference</span></div></div>
+      <div class="card" onclick="openProj('fpga2')"><div class="card-lbl">FPGA / Embedded Linux · May 2022 – Oct 2025</div><h3>Reconfigurable Neural Recording &amp; Stimulation Platform</h3><div class="card-sub">Zynq-7030 · Embedded Linux · Python · IEEE BioCAS 2025</div><p>Developed a Zynq-7030 FPGA-based closed-loop validation platform for neural recording and stimulation, connecting custom front-end PCBs, neural interface ASICs, embedded Linux control, and Python-based visualization. Designed RTL streaming pipelines with FIFO buffering, packet formatting, AXI/APB control, and embedded Linux data streaming for real-time acquisition and closed-loop intervention. Published at IEEE BioCAS 2025.</p><div class="ctags"><span class="ctag">AXI/APB</span><span class="ctag">Embedded Linux</span><span class="ctag">FIFO</span><span class="ctag">BioCAS 2025</span></div></div>
+      <div class="card" onclick="openProj('fpga3')"><div class="card-lbl">FPGA / RTL-to-GDSII · Sep 2021 – Jan 2022</div><h3>NVDLA Accelerator Core with RISC-V</h3><div class="card-sub">65 nm CMOS · FPGA Emulation · SoC Integration</div><p>Integrated NVIDIA's NVDLA open-source ML accelerator core with a PULP/OpenHW Group RISC-V core. Set up FPGA emulation for the RISC-V subsystem prior to synthesis and place-and-route, and explored IP integration, memory mapping, and connectivity challenges for a streamlined accelerator-based SoC integration.</p><div class="ctags"><span class="ctag">NVDLA</span><span class="ctag">RISC-V</span><span class="ctag">FPGA Emulation</span><span class="ctag">SoC Integration</span></div></div>
+      <div class="card" onclick="openProj('fpga4')"><div class="card-lbl">FPGA · Ongoing</div><h3>RTL Verification &amp; Bring-Up Platforms</h3><div class="card-sub">Genesys2 · PYNQ-Z1 · Arty-Z7 · SystemVerilog</div><p>FPGA-based verification environments for pre-silicon RTL validation of ML accelerator and DSP blocks across all four tape-outs, including stimulus generation, functional coverage, interface emulation, and Python-based post-processing flows for ASIC bring-up support.</p><div class="ctags"><span class="ctag">SystemVerilog</span><span class="ctag">RTL Verification</span><span class="ctag">Python</span><span class="ctag">Bring-Up</span></div></div>
     </div>
     <p class="sec-note">FPGA platforms used extensively for pre-silicon verification, bring-up support, and rapid prototyping across all four tape-out projects.</p>
   </div>
@@ -313,23 +387,135 @@ ul{list-style:none;}img{display:block;max-width:100%;}
 <div class="panel" id="panel-publications">
   <div class="sec fade">
     <h2 class="sec-h">Publications</h2>
+
     <div class="pub-grp">Journal Articles</div>
     <div class="pubs">
-      <div class="pub"><div class="pub-ref">[J1]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2025</span><div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div><div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong>, J. S. Filho, T. Valiante, R. Genov — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div></div></div>
-      <div class="pub"><div class="pub-ref">[J2]</div><div><span class="pbadge jnl">JNER 2026</span><div class="pub-title">"Temporal Interference Stimulation of Peripheral Nerves Induces Functionally Diverse Limb Movements Revealed by Automated Pose Estimation and Unsupervised Behavioral Analysis"</div><div class="pub-authors">J. P. Olorocisimo, S. Nag, H. Zhang, S. Yang, M. Prytula, S. Liu, <strong>M. Kanchwala</strong>, Y. Sun, J. Zariffa, R. Genov — J. NeuroEngineering Rehabil., Vol. 23, Art. 29, 2026</div></div></div>
-      <div class="pub"><div class="pub-ref">[J3]</div><div><span class="pbadge jnl">IEEE TBIOCAS 2023</span><div class="pub-title">"Fascicle-Selective Ultrasound-Powered Bidirectional Wireless Peripheral Nerve Interface IC"</div><div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, E. Hwang, C. Tejeiro, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong>, M. Abdolrazzaghi, C. Tang, P. Liu, Y. Sui, H. You, X. Liu, J. Zariffa, R. Genov — IEEE Trans. Biomed. Circuits Syst., Dec. 2023</div></div></div>
+
+      <div class="pub"><div class="pub-ref">[J3]</div><div>
+        <span class="pbadge jnl">JNER 2026</span>
+        <div class="pub-title">"Temporal Interference Stimulation of Peripheral Nerves Induces Functionally Diverse Limb Movements Revealed by Automated Pose Estimation and Unsupervised Behavioral Analysis"</div>
+        <div class="pub-authors">J. P. Olorocisimo, S. Nag, H. Zhang, S. Yang, M. Prytula, S. Liu, <strong>M. Kanchwala</strong>, Y. Sun, J. Zariffa, R. Genov — J. NeuroEngineering Rehabil., Vol. 23, Art. 29, 2026</div>
+        <div class="pub-btns">
+          <a href="https://doi.org/10.1186/s12984-025-01825-3" target="_blank" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[J2]</div><div>
+        <span class="pbadge jnl">IEEE TBIOCAS 2025</span>
+        <div class="pub-title">"BrainForest: Neuromorphic Multiplier-Less Bit-Serial Weight-Memory-Optimized 1024-Tree Brain-State Classification Processor"</div>
+        <div class="pub-authors">G. O'Leary, J. Koerner, <strong>M. Kanchwala</strong>, J. S. Filho, T. Valiante, R. Genov — IEEE Trans. Biomed. Circuits Syst., Feb. 2025</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[J1]</div><div>
+        <span class="pbadge jnl">IEEE TBCAS 2023</span>
+        <div class="pub-title">"Fascicle-Selective Ultrasound-Powered Bidirectional Wireless Peripheral Nerve Interface IC"</div>
+        <div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, E. Hwang, C. Tejeiro, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong>, M. Abdolrazzaghi, C. Tang, P. Liu, Y. Sui, H. You, X. Liu, J. Zariffa, R. Genov — IEEE Trans. Biomed. Circuits Syst., Dec. 2023</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
     </div>
+
     <div class="pub-grp" style="margin-top:1.75rem">Conference Papers</div>
     <div class="pubs">
-      <div class="pub"><div class="pub-ref">[C1]</div><div><span class="pbadge vlsi">IEEE VLSI 2026</span><div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, Honolulu, USA, 2026 (Accepted)</div></div></div>
-      <div class="pub"><div class="pub-ref">[C2]</div><div><span class="pbadge biocas">IEEE BioCAS 2025</span><div class="pub-title">"A Reconfigurable Modular Microelectrode Array Platform for Fast Prototyping of Implantable Closed-Loop Neuromodulation Medical Devices"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, Abu Dhabi, UAE, 2025</div></div></div>
-      <div class="pub"><div class="pub-ref">[C3]</div><div><span class="pbadge">IEEE ISSCC 2025</span><div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div><div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2025</div></div></div>
-      <div class="pub"><div class="pub-ref">[C4]</div><div><span class="pbadge biocas">IEEE BioCAS 2024</span><div class="pub-title">"Multiplierless Spiking Neural Network for Motor Signal Decoding in the Peripheral Nervous System"</div><div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, 2024</div></div></div>
-      <div class="pub"><div class="pub-ref">[C5]</div><div><span class="pbadge">IEEE ISSCC 2023</span><div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div><div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, C. Tejeiro, E. Hwang, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2023</div></div></div>
-      <div class="pub"><div class="pub-ref">[C6]</div><div><span class="pbadge biocas">IEEE BioCAS 2023</span><div class="pub-title">"Design Methodology for Energy-Constrained AI Edge Inference in Implantable Medical Devices"</div><div class="pub-authors">J. S. Filho, J. Xu, <strong>M. Kanchwala</strong>, G. O'Leary, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div></div></div>
-      <div class="pub"><div class="pub-ref">[C7]</div><div><span class="pbadge biocas">IEEE BioCAS 2023</span><div class="pub-title">"Advanced Noise-Shaping SAR ADCs Utilizing Single-Capacitor Arbitrary-Resolution DACs for Miniaturized Neural Interfaces"</div><div class="pub-authors">J. Xu, S. Wu, H. You, J. S. Filho, <strong>M. A. Kanchwala</strong>, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div></div></div>
-      <div class="pub"><div class="pub-ref">[C8]</div><div><span class="pbadge biocas">IEEE BioCAS 2023</span><div class="pub-title">"Artificially-Intelligent Fascicle-Selective Bidirectional Peripheral Nerve Interfaces"</div><div class="pub-authors">J. S. Filho, J. Xu, E. Hwang, S. Nag, L. Long, <strong>M. A. Kanchwala</strong>, M. Abdolrazzaghi, Y. Huang, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div></div></div>
-      <div class="pub"><div class="pub-ref">[C9]</div><div><span class="pbadge biocas">IEEE BioCAS 2018</span><div class="pub-title">"A Miniature Wireless Neural Recording System for Chronic Implantation in Freely Moving Animals"</div><div class="pub-authors"><strong>M. A. Kanchwala</strong>, G. A. McCallum, D. M. Durand — IEEE BioCAS, Cleveland, OH, 2018</div></div></div>
+
+      <div class="pub"><div class="pub-ref">[C9]</div><div>
+        <span class="pbadge vlsi">IEEE VLSI 2026</span>
+        <div class="pub-title">"A Split-Inference Intracortical Interface IC for Battery-Free mm-Scale Magnetoelectrically Powered Brain Implants"</div>
+        <div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE Symp. VLSI Technology and Circuits, Honolulu, USA, 2026 (Accepted)</div>
+        <div class="pub-btns">
+          <a href="https://vlsi26.mapyourshow.com/8_0/sessions/session-details.cfm?scheduleid=88" target="_blank" class="pub-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Session</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Coming soon</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C8]</div><div>
+        <span class="pbadge biocas">IEEE BioCAS 2025</span>
+        <div class="pub-title">"A Reconfigurable Modular Microelectrode Array Platform for Fast Prototyping of Implantable Closed-Loop Neuromodulation Medical Devices"</div>
+        <div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, Abu Dhabi, UAE, 2025</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C7]</div><div>
+        <span class="pbadge">IEEE ISSCC 2025</span>
+        <div class="pub-title">"Event-Based Spatially Zooming Neural Interface IC with 10 nW/Input Reconfigurable-Inverter Fabric and Input-Adaptive Quantization"</div>
+        <div class="pub-authors">J. Xu, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2025</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C6]</div><div>
+        <span class="pbadge biocas">IEEE BioCAS 2024</span>
+        <div class="pub-title">"Multiplierless Spiking Neural Network for Motor Signal Decoding in the Peripheral Nervous System"</div>
+        <div class="pub-authors"><strong>M. Kanchwala</strong> et al. — IEEE BioCAS, 2024</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C5]</div><div>
+        <span class="pbadge">IEEE ISSCC 2023</span>
+        <div class="pub-title">"Fascicle-Selective Bidirectional Peripheral Nerve Interface IC with 173 dB FOM Noise-Shaping SAR ADCs and 1.38 pJ/b Frequency-Multiplying Current-Ripple Radio Transmitter"</div>
+        <div class="pub-authors">J. Xu, J. S. Filho, S. Nag, L. Long, C. Tejeiro, E. Hwang, G. O'Leary, Y. Huang, <strong>M. Kanchwala</strong> et al. — IEEE ISSCC, San Francisco, CA, USA, 2023</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C4]</div><div>
+        <span class="pbadge biocas">IEEE BioCAS 2023</span>
+        <div class="pub-title">"Design Methodology for Energy-Constrained AI Edge Inference in Implantable Medical Devices"</div>
+        <div class="pub-authors">J. S. Filho, J. Xu, <strong>M. Kanchwala</strong>, G. O'Leary, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C3]</div><div>
+        <span class="pbadge biocas">IEEE BioCAS 2023</span>
+        <div class="pub-title">"Advanced Noise-Shaping SAR ADCs Utilizing Single-Capacitor Arbitrary-Resolution DACs for Miniaturized Neural Interfaces"</div>
+        <div class="pub-authors">J. Xu, S. Wu, H. You, J. S. Filho, <strong>M. A. Kanchwala</strong>, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C2]</div><div>
+        <span class="pbadge biocas">IEEE BioCAS 2023</span>
+        <div class="pub-title">"Artificially-Intelligent Fascicle-Selective Bidirectional Peripheral Nerve Interfaces"</div>
+        <div class="pub-authors">J. S. Filho, J. Xu, E. Hwang, S. Nag, L. Long, <strong>M. A. Kanchwala</strong>, M. Abdolrazzaghi, Y. Huang, J. Zariffa, R. Genov — IEEE BioCAS, Toronto, ON, Canada, 2023</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
+      <div class="pub"><div class="pub-ref">[C1]</div><div>
+        <span class="pbadge biocas">IEEE BioCAS 2018</span>
+        <div class="pub-title">"A Miniature Wireless Neural Recording System for Chronic Implantation in Freely Moving Animals"</div>
+        <div class="pub-authors"><strong>M. A. Kanchwala</strong>, G. A. McCallum, D. M. Durand — IEEE BioCAS, Cleveland, OH, 2018</div>
+        <div class="pub-btns">
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>DOI</a>
+          <a href="#" class="pub-btn disabled"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+        </div>
+      </div></div>
+
     </div>
   </div>
 </div>
@@ -339,27 +525,36 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   <div class="sec fade">
     <h2 class="sec-h">Experience</h2>
     <div class="exp-list">
-      <div class="exp-row"><div><div class="meta-dates">Sep 2021 – Present</div><div class="meta-loc">Toronto, ON, Canada</div></div><div class="body"><h3>Digital ASIC Designer / Research Assistant</h3><div class="org">University of Toronto · Intelligent Sensory Microsystems Lab</div><ul><li>Designed low-power digital ASIC blocks for AI-enabled edge-inference systems in 65 nm CMOS, including ML accelerators, DSP/filtering, adaptive control logic, feature extraction, classifiers, and wireless data-path packet logic.</li><li>Owned PPA-aware digital implementation across 4 tape-outs, spanning microarchitecture, RTL, simulation, synthesis, timing closure, full-chip integration, and post-silicon testing.</li><li>Led the lab's digital design thrust on power-efficient edge inference; collaborated with analog, mixed-signal, and RF designers on AMS simulation, system integration, and silicon validation.</li></ul></div></div>
-      <div class="exp-row"><div><div class="meta-dates">Sep 2018 – Aug 2021</div><div class="meta-loc">Cambridge, MA, USA</div></div><div class="body"><h3>Product Engineer, Connected Care – NPI</h3><div class="org">Philips North America</div><ul><li>Supported NPI for patient monitors, defibrillators, and service solutions across design, manufacturing, and quality.</li><li>Led cross-functional continuous-improvement initiatives; recognized 10 times for impact.</li></ul></div></div>
-      <div class="exp-row"><div><div class="meta-dates">Dec 2015 – Jun 2018</div><div class="meta-loc">Cleveland, OH, USA</div></div><div class="body"><h3>Research Assistant</h3><div class="org">Case Western Reserve University · Neural Engineering Center</div><ul><li>Designed an ultra-low power 2-channel implantable wireless neural recording and stimulating system.</li><li>Integrated UWB-IR TX and BLE MCU control; characterized system power; published at IEEE BioCAS 2018.</li></ul></div></div>
-      <div class="exp-row"><div><div class="meta-dates">Jan 2017 – Dec 2017</div><div class="meta-loc">Cleveland, OH, USA</div></div><div class="body"><h3>Product Engineer Co-Op, Advanced Molecular Imaging</h3><div class="org">Philips North America</div><ul><li>Completed design, validation, and NPI deliverables for the successful launch of the Vereos PET/CT system.</li></ul></div></div>
+
+      <div class="exp-row"><div><div class="meta-dates">Sep 2021 – Present</div><div class="meta-loc">Toronto, ON, Canada</div></div><div class="body"><h3>PhD Candidate / Digital ASIC Designer</h3><div class="org">University of Toronto · Intelligent Sensory Microsystems Lab</div><ul><li>Defined digital subsystem architectures and microarchitecture specifications for low-power Edge AI SoCs, translating sensing, inference, bandwidth, latency, and power requirements into RTL data paths, control sequencing, interfaces, and validation plans.</li><li>Designed AI-enabled ASIC data paths in 65 nm CMOS, including ML accelerators, DSP/filtering pipelines, adaptive control logic, feature-extraction/classification engines, packetization logic, and top-level SoC integration.</li><li>Owned PPA-aware implementation across 4 tape-outs, spanning architecture/specification, RTL, simulation, synthesis, timing closure support, SoC integration, chip bring-up, and post-silicon validation.</li><li>Collaborated with analog, mixed-signal, and RF teams on AMS simulation, interface timing, clock/reset integration, system validation, and silicon bring-up; contributed to publications at IEEE ISSCC, VLSI, TBioCAS, and BioCAS.</li></ul></div></div>
+
+      <div class="exp-row"><div><div class="meta-dates">Sep 2022 – Apr 2026</div><div class="meta-loc">Toronto, ON, Canada</div></div><div class="body"><h3>Graduate Teaching Assistant</h3><div class="org">University of Toronto · ECE Department</div><ul><li>Lead TA for ECE1388 (VLSI Design Methodology, Fall 2022–2025) — a graduate course covering end-to-end ASIC design flow from system architecture and RTL through synthesis, physical design, and GDSII generation. Developed a technical user manual for ASIC design tool setup in Linux, delivered 3-hour RTL-to-GDSII tutorials, and mentored students through final projects.</li><li>Led tutorials, labs, office hours, and grading for ECE241 (Digital Systems), ECE253 (Digital and Computer Systems), ECE334 (Digital Circuits), ECE342 (Computer Hardware), ECE212 (Circuit Analysis), and ECE110 (Electrical Fundamentals).</li></ul></div></div>
+
+      <div class="exp-row"><div><div class="meta-dates">Sep 2024 – May 2026</div><div class="meta-loc">Toronto, ON, Canada</div></div><div class="body"><h3>Junior Fellow</h3><div class="org">Massey College · University of Toronto</div><ul><li>Executive Member of the House Committee and Co-chair of the Community Service Committee.</li></ul></div></div>
+
+      <div class="exp-row"><div><div class="meta-dates">Sep 2018 – Aug 2021</div><div class="meta-loc">Cambridge, MA, USA</div></div><div class="body"><h3>Product Engineer, Connected Care – NPI</h3><div class="org">Philips North America</div><ul><li>Contributed to design, development, and release of new service solutions and products for the Patient Monitoring NPI portfolio by reviewing requirements, validating test results, and initiating corrective actions.</li><li>Performed operations audits as lead auditor to ensure compliance to FDA 21CFR820 and ISO13485 regulatory requirements; supported notified body and FDA audits.</li><li>Collaborated with design and systems engineers to ensure products fulfilled 510(k) submission descriptions.</li><li>Led multiple continuous improvement and problem-solving projects across business units with cross-functional teams; received Manager Recognition Awards 9 times.</li></ul></div></div>
+
+      <div class="exp-row"><div><div class="meta-dates">Jan 2016 – Jul 2018</div><div class="meta-loc">Cleveland, OH, USA</div></div><div class="body"><h3>Graduate Student Researcher</h3><div class="org">Case Western Reserve University · Neural Engineering Center</div><ul><li>Developed a wireless telemetry system to record data from a chronically implanted device for real-time neural recording and stimulation in a freely moving rat model.</li><li>Controlled recording and stimulation via BLE; conducted bench testing and acute animal experiments to validate the implant design. Published at IEEE BioCAS 2018.</li></ul></div></div>
+
+      <div class="exp-row"><div><div class="meta-dates">Jan 2017 – Dec 2017</div><div class="meta-loc">Highland Heights, OH, USA</div></div><div class="body"><h3>Product Engineer – Service Innovations Co-op</h3><div class="org">Philips North America · Diagnostic Imaging</div><ul><li>Completed design and validation deliverables for the successful launch of the Vereos PET/CT system.</li><li>Contributed to product design, manufacturing, installation, and serviceability with a focus on defect identification and risk mitigation.</li></ul></div></div>
+
     </div>
   </div>
   <div class="sec fade">
     <h2 class="sec-h">Education</h2>
     <div class="edu-list">
       <div class="edu-row"><div class="edu-yr">Expected Jul 2026</div><div><h3 class="edu-body" style="font-size:.87rem;font-weight:600;color:var(--text)">PhD, Electrical and Computer Engineering</h3><div class="edu-inst">University of Toronto · Toronto, ON, Canada</div><div class="edu-note">GPA 4.0 · Advisor: Prof. Roman Genov</div></div></div>
-      <div class="edu-row"><div class="edu-yr">Aug 2018</div><div><h3 style="font-size:.87rem;font-weight:600;color:var(--text)">M.S., Biomedical Engineering</h3><div class="edu-inst">Case Western Reserve University · Cleveland, OH, USA</div><div class="edu-note">GPA 4.0</div></div></div>
+      <div class="edu-row"><div class="edu-yr">Aug 2018</div><div><h3 style="font-size:.87rem;font-weight:600;color:var(--text)">M.S., Biomedical Engineering</h3><div class="edu-inst">Case Western Reserve University · Cleveland, OH, USA</div><div class="edu-note">GPA 4.0 · Advisor: Prof. Dominique M. Durand</div></div></div>
       <div class="edu-row"><div class="edu-yr">May 2013</div><div><h3 style="font-size:.87rem;font-weight:600;color:var(--text)">B.Tech, Electronics and Communication Engineering</h3><div class="edu-inst">Sir Padampat Singhania University · Udaipur, India</div><div class="edu-note">Rank 1 in Class · Vice Chancellor's Gold Medal</div></div></div>
     </div>
   </div>
   <div class="sec fade">
     <h2 class="sec-h">Technical Skills</h2>
     <div class="skills-grid">
-      <div class="sk"><h4>RTL & ASIC Design</h4><ul><li>Microarchitecture & RTL Design</li><li>DSP / Digital Filtering Pipelines</li><li>ML / AI Accelerator Design</li><li>SoC / Full-Chip Integration</li><li>Clock Domain Crossing (CDC)</li><li>PPA Tradeoff Analysis</li><li>Timing Closure</li></ul></div>
-      <div class="sk"><h4>Languages</h4><ul><li>Verilog / SystemVerilog</li><li>Python</li><li>C / C++</li><li>Tcl / Perl</li></ul></div>
-      <div class="sk"><h4>EDA Tools</h4><ul><li>Synopsys Design Compiler, PrimeTime</li><li>Cadence Innovus, Xcelium, Virtuoso</li><li>Xilinx/AMD Vivado, Vitis</li><li>Modelsim</li></ul></div>
-      <div class="sk"><h4>Protocols & Platforms</h4><ul><li>AXI, APB</li><li>UART, SPI, I2C</li><li>Zynq 7020/7030 SoCs</li><li>PYNQ-Z1, Arty-Z7, Genesys2</li></ul></div>
+      <div class="sk"><h4>RTL & ASIC Design</h4><ul><li>Microarchitecture & RTL Design</li><li>Computer Architecture</li><li>DSP / Digital Filtering Pipelines</li><li>ML / AI Accelerator Design</li><li>CPU / NPU Architecture</li><li>SoC / Full-Chip Integration</li><li>Clock Domain Crossing (CDC)</li><li>FIFOs / Data Path Design</li><li>PPA Tradeoff Analysis</li><li>Timing Closure</li><li>Post-Silicon Validation</li></ul></div>
+      <div class="sk"><h4>Languages & Tools</h4><ul><li>Verilog / SystemVerilog</li><li>Python</li><li>C / C++</li><li>Tcl / Perl</li><li>Synopsys Design Compiler, PrimeTime</li><li>Cadence Innovus, Xcelium, Virtuoso</li><li>Xilinx/AMD Vivado, Vitis</li><li>Modelsim</li></ul></div>
+      <div class="sk"><h4>ML & Inference</h4><ul><li>ML Model Training & Evaluation</li><li>Fixed-Point / Quantized Inference</li><li>SNN / DNN / CNN / Transformer</li><li>Neural Decoding Pipelines</li><li>Edge AI / Real-Time Inference</li><li>Python Validation Flows</li></ul></div>
+      <div class="sk"><h4>Protocols & Platforms</h4><ul><li>AXI, APB</li><li>UART, SPI, I2C</li><li>Embedded Linux</li><li>Zynq 7020/7030 SoCs</li><li>PYNQ-Z1, Arty-Z7, Genesys2</li><li>Custom PCB Design</li></ul></div>
     </div>
   </div>
 </div>
@@ -369,10 +564,13 @@ ul{list-style:none;}img{display:block;max-width:100%;}
   <div class="sec fade">
     <h2 class="sec-h">Teaching</h2>
     <div class="teach-list">
-      <div class="teach-row"><div class="teach-yrs">4 Years</div><div><div class="teach-course">VLSI Design Methodology</div><div class="teach-role">Teaching Assistant · University of Toronto · RTL-to-GDSII Flow</div></div></div>
-      <div class="teach-row"><div class="teach-yrs">3 Years</div><div><div class="teach-course">Digital Systems</div><div class="teach-role">Teaching Assistant · University of Toronto</div></div></div>
-      <div class="teach-row"><div class="teach-yrs">1 Year</div><div><div class="teach-course">Digital Electronics</div><div class="teach-role">Teaching Assistant · University of Toronto</div></div></div>
-      <div class="teach-row"><div class="teach-yrs">1 Year</div><div><div class="teach-course">Computer Hardware</div><div class="teach-role">Teaching Assistant · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Fall 2022–2025</div><div><div class="teach-course">ECE1388 — VLSI Design Methodology <span style="font-weight:400;color:var(--text2)">(Lead TA)</span></div><div class="teach-role">Graduate course · End-to-end ASIC design flow: system architecture, RTL, synthesis, physical design, GDSII. Developed a Linux tool-setup manual, delivered 3-hour RTL-to-GDSII tutorials, mentored final projects.</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Fall 2023–2025</div><div><div class="teach-course">ECE241 — Digital Systems</div><div class="teach-role">Tutorials, labs, office hours, and grading · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Fall 2024–2025</div><div><div class="teach-course">ECE253 — Digital and Computer Systems</div><div class="teach-role">Tutorials, labs, office hours, and grading · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Winter 2026</div><div><div class="teach-course">ECE334 — Digital Circuits</div><div class="teach-role">Tutorials, labs, office hours, and grading · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Winter 2025</div><div><div class="teach-course">ECE342 — Computer Hardware</div><div class="teach-role">Tutorials, labs, office hours, and grading · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Winter 2026</div><div><div class="teach-course">ECE212 — Circuit Analysis</div><div class="teach-role">Tutorials, labs, office hours, and grading · University of Toronto</div></div></div>
+      <div class="teach-row"><div class="teach-yrs">Winter 2024</div><div><div class="teach-course">ECE110 — Electrical Fundamentals</div><div class="teach-role">Tutorials, labs, office hours, and grading · University of Toronto</div></div></div>
       <div class="teach-row"><div class="teach-yrs">Ongoing</div><div><div class="teach-course">Student Mentorship</div><div class="teach-role">Mentored 15 undergrad, 8 MEng, and 2 high school students on ASIC, FPGA, ML, and digital circuit design</div></div></div>
     </div>
   </div>
@@ -390,15 +588,33 @@ ul{list-style:none;}img{display:block;max-width:100%;}
     <h2 class="sec-h">Service & Volunteering</h2>
     <div class="svc-list">
       <div class="svc">IEEE ISSCC Saratoga Group Volunteer (5 Years) — Technical and presentation support to IEEE ISSCC speakers.</div>
-      <div class="svc">Junior Fellow, Massey College, University of Toronto (2 Years) — Executive Committee and Community Service Committee Co-Chair.</div>
     </div>
+  </div>
+</div>
+<!-- ════ BLOG ════════════════════════════════════════════════ -->
+<div class="panel" id="panel-blog">
+  <div class="sec fade">
+    <h2 class="sec-h">Blog</h2>
+    <p class="blog-intro">
+      Notes on research, digital ASIC design, edge-AI hardware, neural interfaces, and the practical thinking behind technical work.
+      The latest Substack posts are pulled into this section automatically and shown newest first.
+    </p>
+    <div class="blog-actions">
+      <a class="blog-pill" href="https://mustafakanchwala.substack.com/" target="_blank" rel="noopener">Visit Substack →</a>
+    </div>
+    <div id="blog-posts" class="blog-list" aria-live="polite">
+      <div class="blog-status">Loading Substack posts…</div>
+    </div>
+    <noscript>
+      <div class="blog-empty">JavaScript is required to preview recent posts here. You can still read everything directly on <a href="https://mustafakanchwala.substack.com/" target="_blank" rel="noopener">Substack</a>.</div>
+    </noscript>
   </div>
 </div>
 
 </div><!-- /page -->
 
 <script>
-const PANELS=['about','projects','publications','experience','other'];
+const PANELS=['about','projects','publications','experience','other','blog'];
 function show(id,btn){
   PANELS.forEach(p=>{const el=document.getElementById('panel-'+p);if(el)el.classList.remove('active');});
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -414,6 +630,89 @@ function show(id,btn){
   else{const nb=document.getElementById('nb-'+id);if(nb)nb.classList.add('active');}
   window.scrollTo(0,0);
 }
+
+/* ── PROJECT DETAIL DATA ──────────────────────────────────── */
+const PROJECTS = {
+  'to1':{
+    title:'Spatially Zooming ADC Control Logic',
+    meta:'Tape-Out 01 · 65 nm CMOS · Nov 2021 – Sep 2022',
+    desc:'Designed low-power digital control logic for adaptive dynamic-range operation of an energy-efficient zooming ADC front-end, featuring three incremental resolution modes for a multi-channel neural sensing SoC. Led microarchitecture, RTL, simulation, synthesis, block integration, and post-silicon validation.',
+    contrib:['Defined microarchitecture for a 3-mode adaptive dynamic-range controller targeting a zooming ADC front-end.','Wrote synthesizable Verilog RTL and verified functionality through simulation.','Ran synthesis and supported timing closure for the digital control block.','Integrated the block into the full SoC and supported chip bring-up and post-silicon validation.'],
+    tags:['Verilog','RTL Design','Microarchitecture','Synthesis','ADC Interface','Post-Silicon Validation','65 nm CMOS']
+  },
+  'to2':{
+    title:'Event-Driven Neural Interface SoC',
+    meta:'Tape-Out 02 · 65 nm CMOS · IEEE ISSCC 2025 · Sep 2022 – Feb 2025',
+    desc:'Designed RTL for a scalable and autonomous mode-switching controller for a digital inverter-based AFE, plus a band-pass digital filter and an area-efficient ML accelerator for event-driven neural signal detection and processing. Enabled best-in-class 10 nW/channel event-driven operation.',
+    contrib:['Designed the mode-switching controller for the inverter-based AFE — key enabler for 10 nW/channel operation.','Implemented a band-pass digital filter for neural signal conditioning.','Designed an area-efficient ML accelerator for on-chip event detection and classification.','Contributed to synthesis, SoC integration, and post-silicon validation. Co-authored IEEE ISSCC 2025 paper.'],
+    tags:['Verilog','ML Accelerator','Digital Filter','Mode-Switching Control','Synthesis','SoC Integration','10 nW/ch','ISSCC 2025']
+  },
+  'to3':{
+    title:'Split-Inference Edge-AI SoC',
+    meta:'Tape-Out 03 · 65 nm CMOS · IEEE VLSI 2026 · Jan 2023 – Jan 2026',
+    desc:'Led RTL system design and top-level digital integration for a split-inference AI SoC, owning feature extraction, classification, ML processing, digital filtering, control logic, and SoC data-path integration. Designed low-power accelerator/control blocks to reduce on-chip compute and off-chip communication energy while preserving real-time inference behavior.',
+    contrib:['Led full digital system design including feature extraction, classification, ML processing, and digital filtering pipelines.','Owned top-level SoC integration of all digital subsystems.','Designed low-power accelerator and control blocks to optimize on-chip compute and off-chip communication energy.','Drove RTL-to-synthesis flow, mixed-signal interface validation, and post-silicon test planning. Accepted at IEEE VLSI 2026.'],
+    tags:['Verilog','SystemVerilog','ML Accelerator','DSP','SoC Integration','Cadence Innovus','Synthesis','VLSI 2026','BCI']
+  },
+  'to4':{
+    title:'Edge AI Accelerator SoC',
+    meta:'Tape-Out 04 · 65 nm CMOS · Mar 2025 – Present',
+    desc:'Designed an Edge AI accelerator and data-path blocks, including a configurable processing element, adaptive AFE mode-switching controller, DSP/filtering pipeline, and data packetization logic for edge-inference SoC operation. Led digital integration with a custom pad-frame design and optimized the data path for efficient wireless transceiver operation.',
+    contrib:['Designed a configurable processing element supporting CNN/Transformer-style inference workloads.','Implemented an adaptive AFE mode-switching controller, DSP filtering pipeline, and packetization logic.','Led full-chip digital integration with a custom pad-frame design.','Optimized the end-to-end data path from oversampling ADC through filtering, feature extraction, and wireless TX.'],
+    tags:['Verilog','AI Accelerator','DSP Pipeline','Packetizer','Pad-Frame Design','Wireless TX','SoC Integration','Edge Inference']
+  },
+  'fpga1':{
+    title:'Split-Inference SoC Real-Time Validation',
+    meta:'FPGA / ASIC / Custom PCB · May 2025 – Apr 2026',
+    desc:'Integrated a split-inference Edge AI SoC with a Zynq-based neural recording/stimulation platform, enabling real-time neural-data streaming into the chip\'s on-chip spike-classification engine and retrieval of inference outputs. Designed Verilog interface/data-path logic and custom PCB for modular chip-to-platform validation.',
+    contrib:['Designed Verilog interface and data-path logic bridging the Zynq FPGA to the Edge AI SoC.','Developed a custom PCB for modular chip-to-platform connectivity.','Validated the full workflow from ML model pre-training to real-time on-chip classification.','Debugged system-level integration issues across hardware, firmware, and software layers.'],
+    tags:['Verilog','Zynq FPGA','Custom PCB','On-Chip Inference','AXI','Embedded Linux','Python']
+  },
+  'fpga2':{
+    title:'Reconfigurable Neural Recording & Stimulation Platform',
+    meta:'Zynq-7030 · Embedded Linux · IEEE BioCAS 2025 · May 2022 – Oct 2025',
+    desc:'Developed a Zynq-7030 FPGA-based closed-loop validation platform for neural recording and stimulation, connecting custom front-end PCBs, neural interface ASICs, embedded Linux control, and Python-based visualization. Designed RTL streaming pipelines with FIFO buffering, packet formatting, AXI/APB control, and embedded Linux data streaming for real-time acquisition and closed-loop intervention.',
+    contrib:['Designed RTL streaming pipelines with FIFO buffering and AXI/APB control fabric on Zynq-7030.','Implemented packet formatting and data-path logic for real-time neural data acquisition.','Developed embedded Linux control software and Python-based visualization tools.','Integrated custom front-end PCBs and neural interface ASICs into the closed-loop platform. Published at IEEE BioCAS 2025.'],
+    tags:['Verilog','Zynq-7030','AXI/APB','FIFO','Embedded Linux','Python','Custom PCB','Vivado','BioCAS 2025']
+  },
+  'fpga3':{
+    title:'NVDLA Accelerator Core with RISC-V',
+    meta:'65 nm CMOS · FPGA Emulation · Sep 2021 – Jan 2022',
+    desc:'Integrated NVIDIA\'s NVDLA open-source ML accelerator core with a PULP/OpenHW Group RISC-V core. Set up FPGA emulation for the RISC-V subsystem prior to synthesis and place-and-route, and explored IP integration, memory mapping, and connectivity challenges for a streamlined accelerator-based SoC integration.',
+    contrib:['Integrated NVDLA ML accelerator with a RISC-V core in a unified SoC environment.','Set up and validated FPGA emulation for the RISC-V subsystem.','Explored memory mapping and AXI connectivity between the accelerator and processor cores.','Investigated synthesis and P&R flow for the integrated system targeting 65 nm CMOS.'],
+    tags:['NVDLA','RISC-V','FPGA Emulation','SoC Integration','AXI','Memory Mapping','RTL-to-GDSII']
+  },
+  'fpga4':{
+    title:'RTL Verification & Bring-Up Platforms',
+    meta:'Genesys2 · PYNQ-Z1 · Arty-Z7 · Ongoing',
+    desc:'FPGA-based verification environments for pre-silicon RTL validation of ML accelerator and DSP blocks across all four tape-outs, including stimulus generation, functional coverage, interface emulation, and Python-based post-processing flows for ASIC bring-up support.',
+    contrib:['Built FPGA testbenches for pre-silicon RTL validation of ML accelerator and DSP blocks.','Developed stimulus generation and functional coverage environments in SystemVerilog.','Created Python-based post-processing flows for validation data analysis.','Supported ASIC bring-up by emulating digital interfaces on FPGA platforms.'],
+    tags:['SystemVerilog','FPGA Verification','Python','Genesys2','PYNQ-Z1','Arty-Z7','Vivado','RTL Bring-Up']
+  }
+};
+
+function openProj(id){
+  const p = PROJECTS[id];
+  if(!p) return;
+  document.getElementById('pd-title').textContent = p.title;
+  document.getElementById('pd-meta').textContent = p.meta;
+  document.getElementById('pd-desc').textContent = p.desc;
+  const contrib = document.getElementById('pd-contrib');
+  contrib.innerHTML = '<ul>'+p.contrib.map(c=>'<li>'+c+'</li>').join('')+'</ul>';
+  const tags = document.getElementById('pd-tags');
+  tags.innerHTML = p.tags.map(t=>'<span class="pd-tag">'+t+'</span>').join('');
+  document.getElementById('pd-extra').innerHTML = p.extra||'';
+  document.getElementById('proj-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeProj(){
+  document.getElementById('proj-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeProjIfBg(e){
+  if(e.target===document.getElementById('proj-overlay')) closeProj();
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeProj(); });
 
 let dark=false;
 function toggleTheme(){
@@ -435,14 +734,191 @@ let rev=false;
 });
 
 function toggleMoreNews(){
-  const hidden=document.getElementById('news-hidden-items');
-  const btn=document.getElementById('news-more-btn');
-  if(!hidden||!btn)return;
-  const open=hidden.classList.toggle('open');
-  btn.textContent=open?'less ↑':'more ↓';
+  const items = document.querySelectorAll('.news-collapsible');
+  const btn = document.getElementById('news-more-btn');
+  if(!btn) return;
+  const isOpen = btn.getAttribute('data-open') === '1';
+  if(isOpen){
+    items.forEach(el => el.classList.remove('open'));
+    btn.textContent = 'more ↓';
+    btn.setAttribute('data-open','0');
+  } else {
+    items.forEach(el => el.classList.add('open'));
+    btn.textContent = 'less ↑';
+    btn.setAttribute('data-open','1');
+  }
 }
 
-document.addEventListener('DOMContentLoaded',()=>show('about',document.getElementById('nb-about')));
+/* ── SUBSTACK / BLOG LOADER ─────────────────────────────
+   The blog cards are generated at runtime from Substack.
+   Preferred source: Substack archive JSON endpoint.
+   Fallbacks: RSS XML, AllOrigins proxy, rss2json proxy.
+   To pin/manual-add posts, add objects to BLOG_FALLBACK below. */
+const SUBSTACK_HOME = 'https://mustafakanchwala.substack.com/';
+const SUBSTACK_FEED = 'https://mustafakanchwala.substack.com/feed';
+const SUBSTACK_ARCHIVE = 'https://mustafakanchwala.substack.com/api/v1/archive?sort=new&search=&offset=0&limit=10';
+const BLOG_FALLBACK = [
+  // Example manual post format, only used if all live fetch options fail:
+  // { title:'Exact Substack title', link:'https://...', pubDate:'2026-06-01', excerpt:'One- or two-sentence preview.' }
+];
+
+function escapeHTML(value){
+  return String(value || '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+}
+
+function stripHTML(value){
+  const div = document.createElement('div');
+  div.innerHTML = value || '';
+  return (div.textContent || div.innerText || '').replace(/\s+/g,' ').trim();
+}
+
+function cleanExcerpt(value, maxLen=260){
+  const text = stripHTML(value || '').replace(/^\s*Share\s*/i,'').trim();
+  return text.length > maxLen ? text.slice(0, maxLen).trim() + '…' : text;
+}
+
+function formatBlogDate(value){
+  const dt = new Date(value);
+  if(Number.isNaN(dt.getTime())) return {month:'Recent', year:''};
+  return {
+    month: dt.toLocaleDateString('en-US',{month:'short'}),
+    year: dt.toLocaleDateString('en-US',{year:'numeric'})
+  };
+}
+
+function normalizeArchivePosts(items){
+  return (items || []).map(item => ({
+    title: item.title || item.social_title || 'Untitled post',
+    link: item.canonical_url || item.web_url || item.url || (SUBSTACK_HOME + 'p/' + (item.slug || '')),
+    pubDate: item.post_date || item.published_at || item.created_at || item.audience || '',
+    excerpt: item.subtitle || item.description || item.search_engine_description || item.truncated_body_text || ''
+  })).filter(post => post.title && post.link);
+}
+
+function normalizeRssJsonPosts(items){
+  return (items || []).map(item => ({
+    title: item.title || 'Untitled post',
+    link: item.link || SUBSTACK_HOME,
+    pubDate: item.pubDate || item.isoDate || item.date || '',
+    excerpt: item.description || item.content || item.contentSnippet || ''
+  })).filter(post => post.title && post.link);
+}
+
+function parseRssXml(xmlText){
+  const xml = new DOMParser().parseFromString(xmlText, 'application/xml');
+  if(xml.querySelector('parsererror')) throw new Error('RSS XML parse failed');
+  return Array.from(xml.querySelectorAll('item')).map(item => {
+    const get = selector => item.querySelector(selector)?.textContent?.trim() || '';
+    return {
+      title: get('title') || 'Untitled post',
+      link: get('link') || SUBSTACK_HOME,
+      pubDate: get('pubDate') || get('published') || get('updated') || '',
+      excerpt: get('description') || get('encoded') || ''
+    };
+  }).filter(post => post.title && post.link);
+}
+
+async function fetchJSON(url){
+  const response = await fetch(url, {cache:'no-store'});
+  if(!response.ok) throw new Error('Request failed: ' + response.status);
+  return response.json();
+}
+
+async function fetchText(url){
+  const response = await fetch(url, {cache:'no-store'});
+  if(!response.ok) throw new Error('Request failed: ' + response.status);
+  return response.text();
+}
+
+async function getBlogPosts(){
+  const errors = [];
+
+  // 1) Best option for Substack: archive JSON. This avoids XML parsing and preserves exact titles/subtitles.
+  try {
+    const data = await fetchJSON(SUBSTACK_ARCHIVE);
+    const posts = normalizeArchivePosts(Array.isArray(data) ? data : (data.posts || data.items || []));
+    if(posts.length) return posts;
+  } catch(err) { errors.push('archive-json'); }
+
+  // 2) Direct RSS XML. This may work on some hosts/browsers, but can be blocked by CORS.
+  try {
+    const xmlText = await fetchText(SUBSTACK_FEED);
+    const posts = parseRssXml(xmlText);
+    if(posts.length) return posts;
+  } catch(err) { errors.push('direct-rss'); }
+
+  // 3) RSS XML through AllOrigins. Useful for static sites where CORS blocks direct RSS.
+  try {
+    const data = await fetchJSON('https://api.allorigins.win/get?url=' + encodeURIComponent(SUBSTACK_FEED));
+    const posts = parseRssXml(data.contents || '');
+    if(posts.length) return posts;
+  } catch(err) { errors.push('allorigins-rss'); }
+
+  // 4) rss2json proxy. No fake API key; the prior version used api_key=public, which can break.
+  try {
+    const data = await fetchJSON('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(SUBSTACK_FEED) + '&count=10');
+    const posts = normalizeRssJsonPosts(data.items || []);
+    if(data.status === 'ok' && posts.length) return posts;
+  } catch(err) { errors.push('rss2json'); }
+
+  console.warn('Substack blog load failed via:', errors.join(', '));
+  return BLOG_FALLBACK;
+}
+
+function renderBlogPosts(items, fromFallback=false){
+  const container = document.getElementById('blog-posts');
+  if(!container) return;
+
+  const seen = new Set();
+  const posts = (items || [])
+    .map(item => ({
+      title: item.title || 'Untitled post',
+      link: item.link || SUBSTACK_HOME,
+      pubDate: item.pubDate || item.isoDate || item.date || '',
+      excerpt: cleanExcerpt(item.excerpt || item.subtitle || item.description || item.content || '')
+    }))
+    .filter(post => {
+      const key = post.link || post.title;
+      if(seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .sort((a,b) => (new Date(b.pubDate).getTime() || 0) - (new Date(a.pubDate).getTime() || 0));
+
+  if(!posts.length){
+    container.innerHTML = `<div class="blog-empty">Recent Substack posts could not be previewed here. This usually means the browser or hosting environment blocked the live feed request. You can still read the latest posts directly on <a href="${SUBSTACK_HOME}" target="_blank" rel="noopener">Substack</a>.</div>`;
+    return;
+  }
+
+  container.innerHTML = posts.map(post => {
+    const date = formatBlogDate(post.pubDate);
+    return `<article class="blog-card">
+      <div class="blog-card-date" aria-label="${escapeHTML((date.month + ' ' + date.year).trim())}">
+        <div class="blog-month">${escapeHTML(date.month)}</div>
+        <div class="blog-year">${escapeHTML(date.year)}</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-kicker">${fromFallback ? 'Featured note' : 'Substack'}</div>
+        <h3 class="blog-card-title"><a href="${escapeHTML(post.link)}" target="_blank" rel="noopener">${escapeHTML(post.title)}</a></h3>
+        ${post.excerpt ? `<p class="blog-card-excerpt">${escapeHTML(post.excerpt)}</p>` : ''}
+        <a href="${escapeHTML(post.link)}" target="_blank" rel="noopener" class="blog-card-link">Read more on Substack <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+async function loadBlogPosts(){
+  const container = document.getElementById('blog-posts');
+  if(!container) return;
+  container.innerHTML = '<div class="blog-status">Loading Substack posts…</div>';
+  const posts = await getBlogPosts();
+  renderBlogPosts(posts, posts === BLOG_FALLBACK);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  show('about',document.getElementById('nb-about'));
+  loadBlogPosts();
+});
 </script>
 </body>
 </html>
